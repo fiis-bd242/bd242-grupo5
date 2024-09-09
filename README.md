@@ -1,6 +1,9 @@
 # Proyecto Grupal - Diseño de Bases de Datos
 
+Bienvenidos al repositorio del grupo 5 del curso de Diseño de Base de Datos. El trabajo realizado es en base a un sistema de Gestión de Espacios y Arrendamientos para MallPLaza.
+
 ## Tabla de Contenido
+
 - [0. Acerca del Grupo](./0/0.md)
   - [0.1. Integrante 1](./0/0.1/0.1.md)
   - [0.2. Integrante 2](./0/0.2/0.2.md)
