@@ -1,4 +1,5 @@
 # Proyecto Grupal - Diseño de Bases de Datos
+Bienvenidos al repositorio del grupo 5, nuestro trabajo se va enfocar en crear un Sistema de Gestión de Espacios y Arrendamientos eficientes de MallPlaza.
 
 ## Tabla de Contenido
 - [0. Acerca del Grupo](./0/0.md)
