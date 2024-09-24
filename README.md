@@ -1,4 +1,5 @@
 # Proyecto Grupal - Diseño de Bases de Datos
+Bienvenido al trabajo del grupo 5, en este repositorio podrás observar nuestro traajo realizado para el curso de Diseño de Base de Datos, en el cual desarrollamos un Sistema de Gestión de Arrendamientos y espacios para la cadena de centro comerciales chilena MallPlaza
 
 ## Tabla de Contenido
 - [0. Acerca del Grupo](./0/0.md)
