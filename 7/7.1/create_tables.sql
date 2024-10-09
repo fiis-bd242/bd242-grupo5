@@ -1,3 +1,46 @@
+--Eliminación de Tablas
+DROP TABLE IF EXISTS Registro_Mantenimiento;
+DROP TABLE IF EXISTS Registro_de_incidencia;
+DROP TABLE IF EXISTS Contrato_Alquiler;
+DROP TABLE IF EXISTS Acuerdo_recobro;
+DROP TABLE IF EXISTS Program_Mantenimiento;
+DROP TABLE IF EXISTS Evento;
+DROP TABLE IF EXISTS Pago;
+DROP TABLE IF EXISTS Recordatorio;
+DROP TABLE IF EXISTS Factura;
+DROP TABLE IF EXISTS Espacio_comun;
+DROP TABLE IF EXISTS Inquilino;
+DROP TABLE IF EXISTS Espacio_Comercial;
+DROP TABLE IF EXISTS Instalacion;
+DROP TABLE IF EXISTS Prioridad;
+DROP TABLE IF EXISTS Persona_telefono;
+DROP TABLE IF EXISTS Persona_email;
+DROP TABLE IF EXISTS Actividad;
+DROP TABLE IF EXISTS Zonas;
+DROP TABLE IF EXISTS Solicitud;
+DROP TABLE IF EXISTS Documento;
+DROP TABLE IF EXISTS Proyecto_recobro;
+DROP TABLE IF EXISTS Recobro;
+DROP TABLE IF EXISTS Empleado;
+DROP TABLE IF EXISTS Persona;
+DROP TABLE IF EXISTS Contrato_Empleado;
+
+--Eliminación de los Types
+DROP TYPE IF EXISTS estado_contrato;
+DROP TYPE IF EXISTS jornada_laboral;
+DROP TYPE IF EXISTS estado_recobro;
+DROP TYPE IF EXISTS estado_proyecto;
+DROP TYPE IF EXISTS estado_solicitud;
+DROP TYPE IF EXISTS estado_inquilino;
+DROP TYPE IF EXISTS estado_espacio_comun;
+DROP TYPE IF EXISTS estado_factura;
+DROP TYPE IF EXISTS tipo_recordatorio;
+DROP TYPE IF EXISTS estado_mantenimiento;
+DROP TYPE IF EXISTS estado_contrato_alquiler;
+DROP TYPE IF EXISTS estado_incidencia;
+DROP TYPE IF EXISTS tipo_instalacion;
+DROP TYPE IF EXISTS metodo_pago;
+
 -- Definición de tipos ENUM
 CREATE TYPE estado_contrato AS ENUM ('Activo', 'Finalizado', 'Suspendido');
 CREATE TYPE jornada_laboral AS ENUM ('Completa', 'Parcial', 'Turno rotativo');
@@ -14,6 +57,7 @@ CREATE TYPE estado_incidencia AS ENUM ('Pendiente', 'Programado');
 CREATE TYPE tipo_instalacion AS ENUM ('Zona', 'Tienda', 'Modulo');
 CREATE TYPE metodo_pago AS ENUM ('Manual', 'Automatico');
 
+--Creación de Tablas
 CREATE TABLE Contrato_Empleado
 (
   id_contrato_empleado CHAR(10) NOT NULL,
@@ -28,6 +72,7 @@ CREATE TABLE Contrato_Empleado
 CREATE TABLE Persona
 (
   id_persona CHAR(10) NOT NULL,
+  nombre VARCHAR(15) NOT NULL,
   nro_domicilio INT NOT NULL,
   ciudad VARCHAR(30) NOT NULL,
   nro_documento INT NOT NULL,
@@ -156,7 +201,7 @@ CREATE TABLE Espacio_Comercial
 CREATE TABLE Inquilino
 (
   id_inquilino CHAR(10) NOT NULL,
-  fecha_eliminacion DATE NOT NULL,
+  fecha_eliminacion DATE,
   fecha_registro DATE NOT NULL,
   estado_inquilino estado_inquilino NOT NULL,
   id_persona CHAR(10) NOT NULL,
@@ -262,7 +307,7 @@ CREATE TABLE Contrato_Alquiler
   id_contrato CHAR(10) NOT NULL,
   fecha_vencimiento DATE NOT NULL,
   estado estado_contrato_alquiler NOT NULL,
-  porcentaje NUMERIC(2, 2) NOT NULL,
+  porcentaje NUMERIC(5, 2) NOT NULL,
   id_documento CHAR(10) NOT NULL,
   id_factura CHAR(10) NOT NULL,
   id_espacio_comercial CHAR(10) NOT NULL,
