@@ -258,15 +258,17 @@ CREATE TABLE Pago
   FOREIGN KEY (id_factura) REFERENCES Factura(id_factura)
 );
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE Evento
 (
-  nombre_evento CHAR(50) NOT NULL,
+  id UUID DEFAULT uuid_generate_v4(), 
+  nombre_evento CHAR(50) UNIQUE NOT NULL,
   descripcion VARCHAR(100) NOT NULL,
   fecha_inicio DATE NOT NULL,
   fecha_fin DATE NOT NULL,
   id_espacio_comun CHAR(10) NOT NULL,
   id_inquilino CHAR(10) NOT NULL,
-  PRIMARY KEY (nombre_evento),
+  PRIMARY KEY (id),
   FOREIGN KEY (id_espacio_comun) REFERENCES Espacio_comun(id_espacio_comun),
   FOREIGN KEY (id_inquilino) REFERENCES Inquilino(id_inquilino)
 );
