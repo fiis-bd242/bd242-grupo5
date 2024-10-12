@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS Prioridad;
 DROP TABLE IF EXISTS Persona_telefono;
 DROP TABLE IF EXISTS Persona_email;
 DROP TABLE IF EXISTS Actividad;
-DROP TABLE IF EXISTS Zonas;
+DROP TABLE IF EXISTS Zona;
 DROP TABLE IF EXISTS Solicitud;
 DROP TABLE IF EXISTS Documento;
 DROP TABLE IF EXISTS Proyecto_recobro;
@@ -135,7 +135,7 @@ CREATE TABLE Solicitud
   FOREIGN KEY (id_documento) REFERENCES Documento(id_documento)
 );
 
-CREATE TABLE Zonas
+CREATE TABLE Zona
 (
   piso INT NOT NULL,
   referencia VARCHAR(256) NOT NULL,
@@ -183,7 +183,7 @@ CREATE TABLE Instalacion
   tipo tipo_instalacion NOT NULL,
   nombre_zona VARCHAR(25) NOT NULL,
   PRIMARY KEY (nombre_instalacion),
-  FOREIGN KEY (nombre_zona) REFERENCES Zonas(nombre_zona)
+  FOREIGN KEY (nombre_zona) REFERENCES Zona(nombre_zona)
 );
 
 CREATE TABLE Espacio_Comercial
@@ -195,7 +195,7 @@ CREATE TABLE Espacio_Comercial
   tarifa NUMERIC(6, 2) NOT NULL,
   nombre_zona VARCHAR(25) NOT NULL,
   PRIMARY KEY (id_espacio_comercial),
-  FOREIGN KEY (nombre_zona) REFERENCES Zonas(nombre_zona)
+  FOREIGN KEY (nombre_zona) REFERENCES Zona(nombre_zona)
 );
 
 CREATE TABLE Inquilino
@@ -220,7 +220,7 @@ CREATE TABLE Espacio_comun
   motivo_de_uso VARCHAR(100) NOT NULL,
   nombre_zona VARCHAR(25) NOT NULL,
   PRIMARY KEY (id_espacio_comun),
-  FOREIGN KEY (nombre_zona) REFERENCES Zonas(nombre_zona)
+  FOREIGN KEY (nombre_zona) REFERENCES Zona(nombre_zona)
 );
 
 CREATE TABLE Factura
