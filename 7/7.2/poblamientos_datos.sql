@@ -29,16 +29,16 @@ Select * from Evento;
 --Poblamiento de datos
 INSERT INTO Contrato_Empleado (id_contrato_empleado, descripcion_cargo, fecha_inicio, fecha_fin, estado_contrato, jornada_laboral)
 VALUES
-('C001', 'Gerente', '2023-01-01', '2024-01-01', 'Activo', 'Completa'),
-('C002', 'Analista', '2023-02-01', '2024-02-01', 'Activo', 'Parcial'),
-('C003', 'Asistente', '2023-03-01', '2024-03-01', 'Finalizado', 'Completa'),
-('C004', 'Desarrollador', '2023-04-01', '2024-04-01', 'Activo', 'Turno rotativo'),
-('C005', 'Diseñador', '2023-05-01', '2024-05-01', 'Suspendido', 'Parcial'),
-('C006', 'Contador', '2023-06-01', '2024-06-01', 'Activo', 'Completa'),
-('C007', 'Técnico', '2023-07-01', '2024-07-01', 'Activo', 'Turno rotativo'),
-('C008', 'Gerente de Proyectos', '2023-08-01', '2024-08-01', 'Finalizado', 'Completa'),
-('C009', 'Vendedor', '2023-09-01', '2024-09-01', 'Activo', 'Parcial'),
-('C010', 'Recepcionista', '2023-10-01', '2024-10-01', 'Activo', 'Completa');
+('C001', 'Gerente', '2023-01-01', '2024-01-07', 'Activo', 'Completa'),
+('C002', 'Analista', '2023-02-01', '2024-02-08', 'Activo', 'Parcial'),
+('C003', 'Asistente', '2023-03-01', '2024-03-04', 'Finalizado', 'Completa'),
+('C004', 'Desarrollador', '2023-04-01', '2024-04-04', 'Activo', 'Turno rotativo'),
+('C005', 'Diseñador', '2023-05-01', '2024-05-09', 'Suspendido', 'Parcial'),
+('C006', 'Contador', '2023-06-01', '2024-06-02', 'Activo', 'Completa'),
+('C007', 'Técnico', '2023-07-01', '2024-07-08', 'Activo', 'Turno rotativo'),
+('C008', 'Gerente de Proyectos', '2023-08-08', '2024-08-01', 'Finalizado', 'Completa'),
+('C009', 'Vendedor', '2023-09-01', '2024-09-07', 'Activo', 'Parcial'),
+('C010', 'Recepcionista', '2023-10-01', '2024-10-05', 'Activo', 'Completa');
 
 -- Poblamiento de datos para Persona
 INSERT INTO Persona (id_persona, nombre, nro_domicilio, ciudad, nro_documento, tipo_documento)
