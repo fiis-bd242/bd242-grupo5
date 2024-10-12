@@ -25,7 +25,7 @@ TRUNCATE TABLE Empleado;
 TRUNCATE TABLE Persona;
 TRUNCATE TABLE Contrato_Empleado;
 
-Select * from Evento;
+
 --Poblamiento de datos
 INSERT INTO Contrato_Empleado (id_contrato_empleado, descripcion_cargo, fecha_inicio, fecha_fin, estado_contrato, jornada_laboral)
 VALUES
@@ -134,8 +134,8 @@ VALUES
 ('S009', 'Abierto', '2023-09-01', '2023-09-10', 'D009'),
 ('S010', 'Cerrado', '2023-10-01', '2023-10-10', 'D010');
 
--- Poblamiento de datos para Zonas
-INSERT INTO Zonas (piso, referencia, nombre_zona)
+-- Poblamiento de datos para Zona
+INSERT INTO Zona (piso, referencia, nombre_zona)
 VALUES
 (1, 'Zona A', 'Zona1'),
 (1, 'Zona B', 'Zona2'),
@@ -399,4 +399,3 @@ VALUES
 ('Limpieza de alfombras', 'RM008', '2023-08-15', '2023-08-15 16:00:00', '2023-08-15 17:00:00', 'Zona comun', 'PM008', 'E008'),
 ('Revisión de sistemas de seguridad', 'RM009', '2023-09-20', '2023-09-20 17:00:00', '2023-09-20 18:00:00', 'Zona de servicios', 'PM009', 'E009'),
 ('Mantenimiento de aires acondicionados', 'RM010', '2023-10-25', '2023-10-25 18:00:00', '2023-10-25 19:00:00', 'Zona comun', 'PM010', 'E010');
-
