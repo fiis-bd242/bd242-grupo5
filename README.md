@@ -27,6 +27,7 @@
   - [4.5. Módulo 5](./4/4.5/4.5.md)
   - [4.6. Módulo 6](./4/4.6/4.6.md)
   - [4.7. Módulo 7](./4/4.7/4.7.md)
+  - [4.8. Módulo 8](./4/4.8/4.8.md)
 - [5. Modelo Conceptual](./5/5.md)
   - [5.1. Diagrama Entidad Relación](./5/5.1/5.1.md)
   - [5.2. Diccionario de Datos](./5/5.2/5.2.md)
