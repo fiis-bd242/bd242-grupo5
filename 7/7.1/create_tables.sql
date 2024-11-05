@@ -60,97 +60,88 @@ CREATE TYPE metodo_pago AS ENUM ('Manual', 'Automatico');
 --Creación de Tablas
 CREATE TABLE Contrato_Empleado
 (
-  id_contrato_empleado CHAR(10) NOT NULL,
+  id_contrato_empleado CHAR(10) NOT NULL PRIMARY KEY,
   descripcion_cargo VARCHAR(50) NOT NULL,
   fecha_inicio DATE NOT NULL,
   fecha_fin DATE NOT NULL,
   estado_contrato estado_contrato NOT NULL,
-  jornada_laboral jornada_laboral NOT NULL,
-  PRIMARY KEY (id_contrato_empleado)
+  jornada_laboral jornada_laboral NOT NULL
 );
 
 CREATE TABLE Persona
 (
-  id_persona CHAR(10) NOT NULL,
+  id_persona CHAR(10) NOT NULL PRIMARY KEY,
   nombre VARCHAR(15) NOT NULL,
   nro_domicilio INT NOT NULL,
   ciudad VARCHAR(30) NOT NULL,
-  nro_documento INT NOT NULL,
-  tipo_documento VARCHAR(20) NOT NULL,
-  PRIMARY KEY (id_persona)
+  nro_documento VARCHAR(11) NOT NULL,
+  tipo_documento VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Empleado
 (
+  id_empleado CHAR(10) NOT NULL PRIMARY KEY,
   cargo VARCHAR(20) NOT NULL,
-  id_empleado CHAR(10) NOT NULL,
   first_last_name VARCHAR(20) NOT NULL,
   second_last_name VARCHAR(20) NOT NULL,
   fecha_nacimiento DATE NOT NULL,
   id_persona CHAR(10) NOT NULL,
   id_contrato_empleado CHAR(10) NOT NULL,
-  PRIMARY KEY (id_empleado),
   FOREIGN KEY (id_persona) REFERENCES Persona(id_persona),
   FOREIGN KEY (id_contrato_empleado) REFERENCES Contrato_Empleado(id_contrato_empleado)
 );
 
 CREATE TABLE Recobro
 (
+  id_recobro CHAR(10) NOT NULL PRIMARY KEY,
   nombre_recobro VARCHAR(20) NOT NULL,
   descripcion_recobro VARCHAR(50) NOT NULL,
-  id_recobro CHAR(10) NOT NULL,
   razon_recobro VARCHAR(30) NOT NULL,
   categoria_recobro VARCHAR(20) NOT NULL,
-  estado_recobro estado_recobro NOT NULL,
-  PRIMARY KEY (id_recobro)
+  estado_recobro estado_recobro NOT NULL
 );
 
 CREATE TABLE Proyecto_recobro
 (
-  id_proyecto CHAR(10) NOT NULL,
+  id_proyecto CHAR(10) NOT NULL PRIMARY KEY,
   costos FLOAT NOT NULL,
   estado_proyecto estado_proyecto NOT NULL,
   nombre_proyecto VARCHAR(30) NOT NULL,
   id_recobro CHAR(10) NOT NULL,
-  PRIMARY KEY (id_proyecto),
   FOREIGN KEY (id_recobro) REFERENCES Recobro(id_recobro)
 );
 
 CREATE TABLE Documento
 (
+  id_documento CHAR(10) NOT NULL PRIMARY KEY,
   tipo_documento VARCHAR(50) NOT NULL,
-  id_documento CHAR(10) NOT NULL,
-  fecha_subido DATE NOT NULL,
-  PRIMARY KEY (id_documento)
+  fecha_subido DATE NOT NULL
 );
 
 CREATE TABLE Solicitud
 (
-  id_solicitud CHAR(10) NOT NULL,
+  id_solicitud CHAR(10) NOT NULL PRIMARY KEY,
   estado_solicitud estado_solicitud NOT NULL,
   fecha_solicitud DATE NOT NULL,
   fecha_resolucion DATE NOT NULL,
   id_documento CHAR(10) NOT NULL,
-  PRIMARY KEY (id_solicitud),
   FOREIGN KEY (id_documento) REFERENCES Documento(id_documento)
 );
 
 CREATE TABLE Zona
 (
+  nombre_zona VARCHAR(25) NOT NULL PRIMARY KEY,
   piso INT NOT NULL,
-  referencia VARCHAR(256) NOT NULL,
-  nombre_zona VARCHAR(25) NOT NULL,
-  PRIMARY KEY (nombre_zona)
+  referencia VARCHAR(256) NOT NULL
 );
 
 CREATE TABLE Actividad
 (
+  cod_actividad CHAR(10) NOT NULL PRIMARY KEY,
   descripcion VARCHAR(30) NOT NULL,
-  cod_actividad CHAR(10) NOT NULL,
   fecha_inicio DATE NOT NULL,
   fecha_fin DATE NOT NULL,
   id_proyecto CHAR(10) NOT NULL,
-  PRIMARY KEY (cod_actividad),
   FOREIGN KEY (id_proyecto) REFERENCES Proyecto_recobro(id_proyecto)
 );
 
@@ -172,117 +163,108 @@ CREATE TABLE Persona_telefono
 
 CREATE TABLE Prioridad
 (
-  prioridad CHAR(2) NOT NULL,
-  descrip_prioridad VARCHAR(64) NOT NULL,
-  PRIMARY KEY (prioridad)
+  prioridad CHAR(2) NOT NULL PRIMARY KEY,
+  descrip_prioridad VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE Instalacion
 (
-  nombre_instalacion CHAR(30) NOT NULL,
+  nombre_instalacion CHAR(30) NOT NULL PRIMARY KEY,
   tipo tipo_instalacion NOT NULL,
   nombre_zona VARCHAR(25) NOT NULL,
-  PRIMARY KEY (nombre_instalacion),
   FOREIGN KEY (nombre_zona) REFERENCES Zona(nombre_zona)
 );
 
 CREATE TABLE Espacio_Comercial
 (
+  id_espacio_comercial CHAR(10) NOT NULL PRIMARY KEY,
   tipo_inmueble VARCHAR(10) NOT NULL,
   estado VARCHAR(10) NOT NULL,
   area NUMERIC(6, 2) NOT NULL,
-  id_espacio_comercial CHAR(10) NOT NULL,
   tarifa NUMERIC(6, 2) NOT NULL,
   nombre_zona VARCHAR(25) NOT NULL,
-  PRIMARY KEY (id_espacio_comercial),
   FOREIGN KEY (nombre_zona) REFERENCES Zona(nombre_zona)
 );
 
 CREATE TABLE Inquilino
 (
-  id_inquilino CHAR(10) NOT NULL,
+  id_inquilino CHAR(10) NOT NULL PRIMARY KEY,
+  razon_social VARCHAR(50) NOT NULL,
   fecha_eliminacion DATE,
   fecha_registro DATE NOT NULL,
   estado_inquilino estado_inquilino NOT NULL,
   id_persona CHAR(10) NOT NULL,
   id_espacio_comercial CHAR(10) NOT NULL,
-  PRIMARY KEY (id_inquilino),
   FOREIGN KEY (id_persona) REFERENCES Persona(id_persona),
   FOREIGN KEY (id_espacio_comercial) REFERENCES Espacio_Comercial(id_espacio_comercial)
 );
 
 CREATE TABLE Espacio_comun
 (
-  id_espacio_comun CHAR(10) NOT NULL,
+  id_espacio_comun CHAR(10) NOT NULL PRIMARY KEY,
   estado estado_espacio_comun NOT NULL,
   area FLOAT NOT NULL,
   precio_por_dia FLOAT NOT NULL,
   motivo_de_uso VARCHAR(100) NOT NULL,
   nombre_zona VARCHAR(25) NOT NULL,
-  PRIMARY KEY (id_espacio_comun),
   FOREIGN KEY (nombre_zona) REFERENCES Zona(nombre_zona)
 );
 
 CREATE TABLE Factura
 (
-  id_factura CHAR(10) NOT NULL,
+  id_factura CHAR(10) NOT NULL PRIMARY KEY,
   estado_factura estado_factura NOT NULL,
   fecha_emision DATE NOT NULL,
   monto_total FLOAT NOT NULL,
   fecha_vencimiento DATE NOT NULL,
   id_inquilino CHAR(10) NOT NULL,
-  PRIMARY KEY (id_factura),
   FOREIGN KEY (id_inquilino) REFERENCES Inquilino(id_inquilino)
 );
 
 CREATE TABLE Recordatorio
 (
-  id_recordatorio CHAR(10) NOT NULL,
+  id_recordatorio CHAR(10) NOT NULL PRIMARY KEY,
   tipo_recordatorio tipo_recordatorio NOT NULL,
   fecha_envio DATE NOT NULL,
   contenido VARCHAR(50) NOT NULL,
   id_factura CHAR(10) NOT NULL,
-  PRIMARY KEY (id_recordatorio),
   FOREIGN KEY (id_factura) REFERENCES Factura(id_factura)
 );
 
 CREATE TABLE Pago
 (
+  id_pago CHAR(10) NOT NULL PRIMARY KEY,
   fecha_pago DATE NOT NULL,
-  id_pago CHAR(10) NOT NULL,
   metodo_pago metodo_pago NOT NULL,
   monto_pago FLOAT NOT NULL,
   tipo_moneda VARCHAR(10) NOT NULL,
   id_factura CHAR(10) NOT NULL,
-  PRIMARY KEY (id_pago),
   FOREIGN KEY (id_factura) REFERENCES Factura(id_factura)
 );
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE Evento
 (
-  id UUID DEFAULT uuid_generate_v4(), 
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY, 
   nombre_evento CHAR(50) UNIQUE NOT NULL,
   descripcion VARCHAR(100) NOT NULL,
   fecha_inicio DATE NOT NULL,
   fecha_fin DATE NOT NULL,
   id_espacio_comun CHAR(10) NOT NULL,
   id_inquilino CHAR(10) NOT NULL,
-  PRIMARY KEY (id),
   FOREIGN KEY (id_espacio_comun) REFERENCES Espacio_comun(id_espacio_comun),
   FOREIGN KEY (id_inquilino) REFERENCES Inquilino(id_inquilino)
 );
 
 CREATE TABLE Program_Mantenimiento
 (
-  dod_mantenimiento CHAR(10) NOT NULL,
+  dod_mantenimiento CHAR(10) NOT NULL PRIMARY KEY,
   plazo DATE NOT NULL,
   descripcion VARCHAR(64) NOT NULL,
   estado estado_mantenimiento NOT NULL,
   nombre_instalacion CHAR(30) NOT NULL,
   id_administrador CHAR(10) NOT NULL,
   prioridad CHAR(2) NOT NULL,
-  PRIMARY KEY (dod_mantenimiento),
   FOREIGN KEY (nombre_instalacion) REFERENCES Instalacion(nombre_instalacion),
   FOREIGN KEY (id_administrador) REFERENCES Empleado(id_empleado),
   FOREIGN KEY (prioridad) REFERENCES Prioridad(prioridad)
@@ -290,30 +272,28 @@ CREATE TABLE Program_Mantenimiento
 
 CREATE TABLE Acuerdo_recobro
 (
-  id_acuerdo CHAR(10) NOT NULL,
+  id_acuerdo CHAR(10) NOT NULL PRIMARY KEY,
   fecha_acuerdo DATE NOT NULL,
   descripcion_acuerdo VARCHAR(40) NOT NULL,
   precio_acuerdo INT NOT NULL,
   id_proyecto CHAR(10) NOT NULL,
   id_factura CHAR(10) NOT NULL,
-  PRIMARY KEY (id_acuerdo),
   FOREIGN KEY (id_proyecto) REFERENCES Proyecto_recobro(id_proyecto),
   FOREIGN KEY (id_factura) REFERENCES Factura(id_factura)
 );
 
 CREATE TABLE Contrato_Alquiler
 (
+  id_contrato CHAR(10) NOT NULL PRIMARY KEY,
   fecha_inicio DATE NOT NULL,
   monto NUMERIC(10, 2) NOT NULL,
   condicion VARCHAR(256) NOT NULL,
-  id_contrato CHAR(10) NOT NULL,
   fecha_vencimiento DATE NOT NULL,
   estado estado_contrato_alquiler NOT NULL,
   porcentaje NUMERIC(5, 2) NOT NULL,
   id_documento CHAR(10) NOT NULL,
   id_factura CHAR(10) NOT NULL,
   id_espacio_comercial CHAR(10) NOT NULL,
-  PRIMARY KEY (id_contrato),
   FOREIGN KEY (id_documento) REFERENCES Documento(id_documento),
   FOREIGN KEY (id_factura) REFERENCES Factura(id_factura),
   FOREIGN KEY (id_espacio_comercial) REFERENCES Espacio_Comercial(id_espacio_comercial)
@@ -321,15 +301,14 @@ CREATE TABLE Contrato_Alquiler
 
 CREATE TABLE Registro_de_incidencia
 (
+  cod_incidencia CHAR(10) NOT NULL PRIMARY KEY,
   descripcion VARCHAR(64) NOT NULL,
   fecha_registro DATE NOT NULL,
   hora_registro TIMESTAMP NOT NULL,
-  cod_incidencia CHAR(10) NOT NULL,
   estado estado_incidencia NOT NULL,
   nombre_instalacion CHAR(30) NOT NULL,
   dod_mantenimiento CHAR(10) NOT NULL,
   id_empleado CHAR(10) NOT NULL,
-  PRIMARY KEY (cod_incidencia),
   FOREIGN KEY (nombre_instalacion) REFERENCES Instalacion(nombre_instalacion),
   FOREIGN KEY (dod_mantenimiento) REFERENCES Program_Mantenimiento(dod_mantenimiento),
   FOREIGN KEY (id_empleado) REFERENCES Empleado(id_empleado)
@@ -337,15 +316,14 @@ CREATE TABLE Registro_de_incidencia
 
 CREATE TABLE Registro_Mantenimiento
 (
+  cod_r_mantenimiento CHAR(10) NOT NULL PRIMARY KEY,
   observaciones VARCHAR(64) NOT NULL,
-  cod_r_mantenimiento CHAR(10) NOT NULL,
   fecha_realizada DATE NOT NULL,
   hora_inicio TIMESTAMP NOT NULL,
   hora_fin TIMESTAMP NOT NULL,
   nombre CHAR(30) NOT NULL,
   dod_mantenimiento CHAR(10) NOT NULL,
   id_empleado CHAR(10) NOT NULL,
-  PRIMARY KEY (cod_r_mantenimiento),
   FOREIGN KEY (nombre) REFERENCES Instalacion(nombre_instalacion),
   FOREIGN KEY (dod_mantenimiento) REFERENCES Program_Mantenimiento(dod_mantenimiento),
   FOREIGN KEY (id_empleado) REFERENCES Empleado(id_empleado)

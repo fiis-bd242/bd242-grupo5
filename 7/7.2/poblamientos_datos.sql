@@ -25,8 +25,7 @@ TRUNCATE TABLE Empleado;
 TRUNCATE TABLE Persona;
 TRUNCATE TABLE Contrato_Empleado;
 
-
---Poblamiento de datos
+-- Poblamiento de datos
 INSERT INTO Contrato_Empleado (id_contrato_empleado, descripcion_cargo, fecha_inicio, fecha_fin, estado_contrato, jornada_laboral)
 VALUES
 ('C001', 'Gerente', '2023-01-01', '2024-01-07', 'Activo', 'Completa'),
@@ -43,16 +42,16 @@ VALUES
 -- Poblamiento de datos para Persona
 INSERT INTO Persona (id_persona, nombre, nro_domicilio, ciudad, nro_documento, tipo_documento)
 VALUES
-('P001', 'Nike', 123, 'Lima', 12345678, 'RUC'),
-('P002', 'Starbucks', 456, 'Arequipa', 87654321, 'RUC'),
-('P003', 'Adidas', 789, 'Cusco', 23456789, 'RUC'),
-('P004', 'Zara', 101, 'Trujillo', 98765432, 'RUC'),
-('P005', 'H&M', 112, 'Lima', 13579246, 'RUC'),
-('P006', 'Puma', 113, 'Piura', 24681357, 'RUC'),
-('P007', 'Levis', 114, 'Tacna', 36925814, 'RUC'),
-('P008', 'Apple', 115, 'Iquitos', 85274136, 'RUC'),
-('P009', 'Coca Cola', 116, 'Lima', 14725836, 'RUC'),
-('P010', 'Pepsi', 117, 'Lima', 36925847, 'RUC'),
+('P001', 'Nike', 123, 'Lima', 20123456789, 'RUC'),
+('P002', 'Starbucks', 456, 'Arequipa', 20123456788, 'RUC'),
+('P003', 'Adidas', 789, 'Cusco', 20123456787, 'RUC'),
+('P004', 'Zara', 101, 'Trujillo', 20123456786, 'RUC'),
+('P005', 'H&M', 112, 'Lima', 20123456785, 'RUC'),
+('P006', 'Puma', 113, 'Piura', 20123456784, 'RUC'),
+('P007', 'Levis', 114, 'Tacna', 20123456783, 'RUC'),
+('P008', 'Apple', 115, 'Iquitos', 20123456782, 'RUC'),
+('P009', 'Coca Cola', 116, 'Lima', 20123456781, 'RUC'),
+('P010', 'Pepsi', 117, 'Lima', 20123456780, 'RUC'),
 ('P011', 'Juan', 118, 'Lima', 98765432, 'DNI'),
 ('P012', 'María', 119, 'Lima', 87654321, 'DNI'),
 ('P013', 'Pedro', 120, 'Lima', 23456789, 'DNI'),
@@ -65,32 +64,32 @@ VALUES
 ('P020', 'Carla', 127, 'Lima', 74185296, 'DNI');
 
 -- Poblamiento de datos para Empleado
-INSERT INTO Empleado (cargo, id_empleado, first_last_name, second_last_name, fecha_nacimiento, id_persona, id_contrato_empleado)
+INSERT INTO Empleado (id_empleado, cargo, first_last_name, second_last_name, fecha_nacimiento, id_persona, id_contrato_empleado)
 VALUES
-('Gerente', 'E001', 'Pérez', 'González', '1985-05-15', 'P011', 'C001'),
-('Analista', 'E002', 'Gómez', 'Mendoza', '1990-08-22', 'P012', 'C002'),
-('Asistente', 'E003', 'López', 'Castañeda', '1995-11-30', 'P013', 'C003'),
-('Desarrollador', 'E004', 'Martínez', 'Rojas', '1988-12-12', 'P014', 'C004'),
-('Diseñador', 'E005', 'Fernández', 'Paredes', '1992-03-21', 'P015', 'C005'),
-('Contador', 'E006', 'Hernández', 'Ríos', '1980-07-18', 'P016', 'C006'),
-('Técnico', 'E007', 'Ramírez', 'Salazar', '1989-02-15', 'P017', 'C007'),
-('Gerente de Proyectos', 'E008', 'Vargas', 'Martín', '1987-09-09', 'P018', 'C008'),
-('Vendedor', 'E009', 'Sánchez', 'Acuña', '1993-04-14', 'P019', 'C009'),
-('Recepcionista', 'E010', 'Torres', 'Gutiérrez', '1996-06-11', 'P020', 'C010');
+('E001', 'Gerente', 'Pérez', 'González', '1985-05-15', 'P011', 'C001'),
+('E002', 'Analista', 'Gómez', 'Mendoza', '1990-08-22', 'P012', 'C002'),
+('E003', 'Asistente', 'López', 'Castañeda', '1995-11-30', 'P013', 'C003'),
+('E004', 'Desarrollador', 'Martínez', 'Rojas', '1988-12-12', 'P014', 'C004'),
+('E005', 'Diseñador', 'Fernández', 'Paredes', '1992-03-21', 'P015', 'C005'),
+('E006', 'Contador', 'Hernández', 'Ríos', '1980-07-18', 'P016', 'C006'),
+('E007', 'Técnico', 'Ramírez', 'Salazar', '1989-02-15', 'P017', 'C007'),
+('E008', 'Gerente de Proyectos', 'Vargas', 'Martín', '1987-09-09', 'P018', 'C008'),
+('E009', 'Vendedor', 'Sánchez', 'Acuña', '1993-04-14', 'P019', 'C009'),
+('E010', 'Recepcionista', 'Torres', 'Gutiérrez', '1996-06-11', 'P020', 'C010');
 
 -- Poblamiento de datos para Recobro
-INSERT INTO Recobro (nombre_recobro, descripcion_recobro, id_recobro, razon_recobro, categoria_recobro, estado_recobro)
+INSERT INTO Recobro (id_recobro, nombre_recobro, descripcion_recobro, razon_recobro, categoria_recobro, estado_recobro)
 VALUES
-('Recobro1', 'Recobro por servicio', 'R001', 'Deuda de servicio', 'Servicio', 'Pendiente'),
-('Recobro2', 'Recobro por alquiler', 'R002', 'Deuda de alquiler', 'Alquiler', 'Enviado'),
-('Recobro3', 'Recobro por multa', 'R003', 'Multa de tráfico', 'Multa', 'Ejecutado'),
-('Recobro4', 'Recobro por préstamo', 'R004', 'Deuda de préstamo', 'Préstamo', 'Valorizando'),
-('Recobro5', 'Recobro por suministro', 'R005', 'Deuda de suministro', 'Suministro', 'Completado'),
-('Recobro6', 'Recobro por servicio', 'R006', 'Deuda de servicio', 'Servicio', 'Pendiente'),
-('Recobro7', 'Recobro por alquiler', 'R007', 'Deuda de alquiler', 'Alquiler', 'Enviado'),
-('Recobro8', 'Recobro por multa', 'R008', 'Multa de tráfico', 'Multa', 'Ejecutado'),
-('Recobro9', 'Recobro por préstamo', 'R009', 'Deuda de préstamo', 'Préstamo', 'Valorizando'),
-('Recobro10', 'Recobro por suministro', 'R010', 'Deuda de suministro', 'Suministro', 'Completado');
+('R001', 'Recobro1', 'Recobro por servicio', 'Deuda de servicio', 'Servicio', 'Pendiente'),
+('R002', 'Recobro2', 'Recobro por alquiler', 'Deuda de alquiler', 'Alquiler', 'Enviado'),
+('R003', 'Recobro3', 'Recobro por multa', 'Multa de tráfico', 'Multa', 'Ejecutado'),
+('R004', 'Recobro4', 'Recobro por préstamo', 'Deuda de préstamo', 'Préstamo', 'Valorizando'),
+('R005', 'Recobro5', 'Recobro por suministro', 'Deuda de suministro', 'Suministro', 'Completado'),
+('R006', 'Recobro6', 'Recobro por servicio', 'Deuda de servicio', 'Servicio', 'Pendiente'),
+('R007', 'Recobro7', 'Recobro por alquiler', 'Deuda de alquiler', 'Alquiler', 'Enviado'),
+('R008', 'Recobro8', 'Recobro por multa', 'Multa de tráfico', 'Multa', 'Ejecutado'),
+('R009', 'Recobro9', 'Recobro por préstamo', 'Deuda de préstamo', 'Préstamo', 'Valorizando'),
+('R010', 'Recobro10', 'Recobro por suministro', 'Deuda de suministro', 'Suministro', 'Completado');
 
 -- Poblamiento de datos para Proyecto_recobro
 INSERT INTO Proyecto_recobro (id_proyecto, costos, estado_proyecto, nombre_proyecto, id_recobro)
@@ -107,18 +106,18 @@ VALUES
 ('P010', 450.30, 'Supervision', 'Proyecto Kappa', 'R010');
 
 -- Poblamiento de datos para Documento
-INSERT INTO Documento (tipo_documento, id_documento, fecha_subido)
+INSERT INTO Documento (id_documento, tipo_documento, fecha_subido)
 VALUES
-('Factura', 'D001', '2023-01-10'),
-('Contrato', 'D002', '2023-02-15'),
-('Informe', 'D003', '2023-03-20'),
-('Recibo', 'D004', '2023-04-25'),
-('Presupuesto', 'D005', '2023-05-30'),
-('Certificado', 'D006', '2023-06-05'),
-('Informe Técnico', 'D007', '2023-07-10'),
-('Acta', 'D008', '2023-08-15'),
-('Propuesta', 'D009', '2023-09-20'),
-('Otros', 'D010', '2023-10-25');
+('D001', 'Factura', '2023-01-10'),
+('D002', 'Contrato', '2023-02-15'),
+('D003', 'Informe', '2023-03-20'),
+('D004', 'Recibo', '2023-04-25'),
+('D005', 'Presupuesto', '2023-05-30'),
+('D006', 'Certificado', '2023-06-05'),
+('D007', 'Informe Técnico', '2023-07-10'),
+('D008', 'Acta', '2023-08-15'),
+('D009', 'Propuesta', '2023-09-20'),
+('D010', 'Otros', '2023-10-25');
 
 -- Poblamiento de datos para Solicitud
 INSERT INTO Solicitud (id_solicitud, estado_solicitud, fecha_solicitud, fecha_resolucion, id_documento)
@@ -135,32 +134,32 @@ VALUES
 ('S010', 'Cerrado', '2023-10-01', '2023-10-10', 'D010');
 
 -- Poblamiento de datos para Zona
-INSERT INTO Zona (piso, referencia, nombre_zona)
+INSERT INTO Zona (nombre_zona, piso, referencia)
 VALUES
-(1, 'Zona A', 'Zona1'),
-(1, 'Zona B', 'Zona2'),
-(2, 'Zona C', 'Zona3'),
-(2, 'Zona D', 'Zona4'),
-(3, 'Zona E', 'Zona5'),
-(3, 'Zona F', 'Zona6'),
-(4, 'Zona G', 'Zona7'),
-(4, 'Zona H', 'Zona8'),
-(5, 'Zona I', 'Zona9'),
-(5, 'Zona J', 'Zona10');
+('Zona1', 1, 'Entrada Principal'),
+('Zona2', 1, 'Cerca de la Escalera Mecánica'),
+('Zona3', 1, 'Frente a la Tienda de Ropa'),
+('Zona4', 2, 'Zona de Comidas Rápidas'),
+('Zona5', 2, 'Cerca del Cine'),
+('Zona6', 2, 'Área de Juguetes'),
+('Zona7', 3, 'Terraza con Vista'),
+('Zona8', 3, 'Cerca de la Zona de Entretenimiento'),
+('Zona9', 3, 'Área de Electrónicos'),
+('Zona10', 3, 'Cerca de la Salida de Emergencia');
 
 -- Poblamiento de datos para Actividad
-INSERT INTO Actividad (descripcion, cod_actividad, fecha_inicio, fecha_fin, id_proyecto)
+INSERT INTO Actividad (cod_actividad, descripcion, fecha_inicio, fecha_fin, id_proyecto)
 VALUES
-('Reunión de equipo', 'A001', '2023-01-01', '2023-01-01', 'P001'),
-('Entrega de informe', 'A002', '2023-02-01', '2023-02-02', 'P002'),
-('Evaluación del proyecto', 'A003', '2023-03-01', '2023-03-01', 'P003'),
-('Desarrollo de la aplicación', 'A004', '2023-04-01', '2023-05-01', 'P004'),
-('Revisión de diseño', 'A005', '2023-05-01', '2023-05-15', 'P005'),
-('Pruebas del sistema', 'A006', '2023-06-01', '2023-06-10', 'P006'),
-('Lanzamiento del producto', 'A007', '2023-07-01', '2023-07-01', 'P007'),
-('Capacitación al personal', 'A008', '2023-08-01', '2023-08-01', 'P008'),
-('Monitoreo del proyecto', 'A009', '2023-09-01', '2023-09-30', 'P009'),
-('Cierre del proyecto', 'A010', '2023-10-01', '2023-10-10', 'P010');
+('A001', 'Reunión de equipo', '2023-01-01', '2023-01-01', 'P001'),
+('A002', 'Entrega de informe', '2023-02-01', '2023-02-02', 'P002'),
+('A003', 'Evaluación del proyecto', '2023-03-01', '2023-03-01', 'P003'),
+('A004', 'Desarrollo de la aplicación', '2023-04-01', '2023-05-01', 'P004'),
+('A005', 'Revisión de diseño', '2023-05-01', '2023-05-15', 'P005'),
+('A006', 'Pruebas del sistema', '2023-06-01', '2023-06-10', 'P006'),
+('A007', 'Lanzamiento del producto', '2023-07-01', '2023-07-01', 'P007'),
+('A008', 'Capacitación al personal', '2023-08-01', '2023-08-01', 'P008'),
+('A009', 'Monitoreo del proyecto', '2023-09-01', '2023-09-30', 'P009'),
+('A010', 'Cierre del proyecto', '2023-10-01', '2023-10-10', 'P010');
 
 -- Poblamiento de datos para Persona_email
 INSERT INTO Persona_email (email, id_persona)
@@ -233,32 +232,32 @@ VALUES
 ('Baño A', 'Zona', 'Zona10');
 
 -- Poblamiento de datos para Espacio_Comercial
-INSERT INTO Espacio_Comercial (tipo_inmueble, estado, area, id_espacio_comercial, tarifa, nombre_zona)
+INSERT INTO Espacio_Comercial (id_espacio_comercial, tipo_inmueble, estado, area, tarifa, nombre_zona)
 VALUES
-('Local', 'Disponible', 50.00, 'EC001', 500.00, 'Zona1'),
-('Oficina', 'Ocupado', 100.00, 'EC002', 1500.00, 'Zona2'),
-('Almacén', 'Disponible', 200.00, 'EC003', 1000.00, 'Zona3'),
-('Tienda', 'Ocupado', 75.00, 'EC004', 700.00, 'Zona4'),
-('Showroom', 'Disponible', 60.00, 'EC005', 800.00, 'Zona5'),
-('Tienda', 'Ocupado', 90.00, 'EC006', 1200.00, 'Zona6'),
-('Local', 'Disponible', 80.00, 'EC007', 650.00, 'Zona7'),
-('Oficina', 'Ocupado', 110.00, 'EC008', 1600.00, 'Zona8'),
-('Almacén', 'Disponible', 220.00, 'EC009', 1100.00, 'Zona9'),
-('Tienda', 'Ocupado', 70.00, 'EC010', 900.00, 'Zona10');
+('EC001', 'Local', 'Disponible', 50.00, 500.00, 'Zona1'),
+('EC002', 'Oficina', 'Ocupado', 100.00, 1500.00, 'Zona2'),
+('EC003', 'Almacén', 'Disponible', 200.00, 1000.00, 'Zona3'),
+('EC004', 'Tienda', 'Ocupado', 75.00, 700.00, 'Zona4'),
+('EC005', 'Showroom', 'Disponible', 60.00, 800.00, 'Zona5'),
+('EC006', 'Tienda', 'Ocupado', 90.00, 1200.00, 'Zona6'),
+('EC007', 'Local', 'Disponible', 80.00, 650.00, 'Zona7'),
+('EC008', 'Oficina', 'Ocupado', 110.00, 1600.00, 'Zona8'),
+('EC009', 'Almacén', 'Disponible', 220.00, 1100.00, 'Zona9'),
+('EC010', 'Tienda', 'Ocupado', 70.00, 900.00, 'Zona10');
 
 -- Poblamiento de datos para Inquilino
-INSERT INTO Inquilino (id_inquilino, fecha_eliminacion, fecha_registro, estado_inquilino, id_persona, id_espacio_comercial)
+INSERT INTO Inquilino (id_inquilino, razon_social, fecha_eliminacion, fecha_registro, estado_inquilino, id_persona, id_espacio_comercial)
 VALUES
-('I001', NULL, '2023-01-15', 'Activo', 'P001', 'EC001'),
-('I002', NULL, '2023-02-20', 'Activo', 'P002', 'EC002'),
-('I003', NULL, '2023-03-25', 'Inactivo', 'P003', 'EC003'),
-('I004', NULL, '2023-04-30', 'Activo', 'P004', 'EC004'),
-('I005', NULL, '2023-05-05', 'Activo', 'P005', 'EC005'),
-('I006', NULL, '2023-06-10', 'Inactivo', 'P006', 'EC006'),
-('I007', NULL, '2023-07-15', 'Activo', 'P007', 'EC007'),
-('I008', NULL, '2023-08-20', 'Activo', 'P008', 'EC008'),
-('I009', NULL, '2023-09-25', 'Inactivo', 'P009', 'EC009'),
-('I010', NULL, '2023-10-30', 'Activo', 'P010', 'EC010');
+('I001', 'Nike S.A.', NULL, '2023-01-15', 'Activo', 'P001', 'EC001'),
+('I002', 'Starbucks Corp.', NULL, '2023-02-20', 'Activo', 'P002', 'EC002'),
+('I003', 'Adidas AG', NULL, '2023-03-25', 'Inactivo', 'P003', 'EC003'),
+('I004', 'Zara SA', NULL, '2023-04-30', 'Activo', 'P004', 'EC004'),
+('I005', 'H&M Group', NULL, '2023-05-05', 'Activo', 'P005', 'EC005'),
+('I006', 'Puma SE', NULL, '2023-06-10', 'Inactivo', 'P006', 'EC006'),
+('I007', 'Levis Strauss', NULL, '2023-07-15', 'Activo', 'P007', 'EC007'),
+('I008', 'Apple Inc.', NULL, '2023-08-20', 'Activo', 'P008', 'EC008'),
+('I009', 'Coca Cola Company', NULL, '2023-09-25', 'Inactivo', 'P009', 'EC009'),
+('I010', 'PepsiCo, Inc.', NULL, '2023-10-30', 'Activo', 'P010', 'EC010');
 
 -- Poblamiento de datos para Espacio_comun
 INSERT INTO Espacio_comun (id_espacio_comun, estado, area, precio_por_dia, motivo_de_uso, nombre_zona)
@@ -303,32 +302,32 @@ VALUES
 ('R010', 'Posterior', '2023-10-01', 'Factura vencida', 'F010');
 
 -- Poblamiento de datos para Pago
-INSERT INTO Pago (fecha_pago, id_pago, metodo_pago, monto_pago, tipo_moneda, id_factura)
+INSERT INTO Pago (id_pago, fecha_pago, metodo_pago, monto_pago, tipo_moneda, id_factura)
 VALUES
-('2023-01-15', 'P001', 'Manual', 100.00, 'S/.', 'F001'),
-('2023-02-20', 'P002', 'Automatico', 150.00, 'S/.', 'F002'),
-('2023-03-25', 'P003', 'Manual', 200.00, 'S/.', 'F003'),
-('2023-04-30', 'P004', 'Automatico', 250.00, 'S/.', 'F004'),
-('2023-05-05', 'P005', 'Manual', 300.00, 'S/.', 'F005'),
-('2023-06-10', 'P006', 'Automatico', 350.00, 'S/.', 'F006'),
-('2023-07-15', 'P007', 'Manual', 400.00, 'S/.', 'F007'),
-('2023-08-20', 'P008', 'Automatico', 450.00, 'S/.', 'F008'),
-('2023-09-25', 'P009', 'Manual', 500.00, 'S/.', 'F009'),
-('2023-10-30', 'P010', 'Automatico', 550.00, 'S/.', 'F010');
+('P001', '2023-01-15', 'Manual', 100.00, 'S/.', 'F001'),
+('P002', '2023-02-20', 'Automatico', 150.00, 'S/.', 'F002'),
+('P003', '2023-03-25', 'Manual', 200.00, 'S/.', 'F003'),
+('P004', '2023-04-30', 'Automatico', 250.00, 'S/.', 'F004'),
+('P005', '2023-05-05', 'Manual', 300.00, 'S/.', 'F005'),
+('P006', '2023-06-10', 'Automatico', 350.00, 'S/.', 'F006'),
+('P007', '2023-07-15', 'Manual', 400.00, 'S/.', 'F007'),
+('P008', '2023-08-20', 'Automatico', 450.00, 'S/.', 'F008'),
+('P009', '2023-09-25', 'Manual', 500.00, 'S/.', 'F009'),
+('P010', '2023-10-30', 'Automatico', 550.00, 'S/.', 'F010');
 
 -- Poblamiento de datos para Evento
-INSERT INTO Evento (nombre_evento, descripcion, fecha_inicio, fecha_fin, id_espacio_comun, id_inquilino)
+INSERT INTO Evento (id_espacio_comun, id_inquilino, nombre_evento, descripcion, fecha_inicio, fecha_fin)
 VALUES
-('Evento1', 'Conferencia sobre tecnología', '2023-01-10', '2023-01-10', 'EC001', 'I001'),
-('Evento2', 'Taller de marketing', '2023-02-15', '2023-02-15', 'EC002', 'I002'),
-('Evento3', 'Reunión de proyecto', '2023-03-20', '2023-03-20', 'EC003', 'I003'),
-('Evento4', 'Seminario de ventas', '2023-04-25', '2023-04-25', 'EC004', 'I004'),
-('Evento5', 'Capacitación de personal', '2023-05-30', '2023-05-30', 'EC005', 'I005'),
-('Evento6', 'Presentación de resultados', '2023-06-05', '2023-06-05', 'EC006', 'I006'),
-('Evento7', 'Taller de innovación', '2023-07-10', '2023-07-10', 'EC007', 'I007'),
-('Evento8', 'Feria de negocios', '2023-08-15', '2023-08-15', 'EC008', 'I008'),
-('Evento9', 'Exposición de productos', '2023-09-20', '2023-09-20', 'EC009', 'I009'),
-('Evento10', 'Cierre de proyecto', '2023-10-25', '2023-10-25', 'EC010', 'I010');
+('EC001', 'I001', 'Evento1', 'Conferencia sobre tecnología', '2023-01-10', '2023-01-10'),
+('EC002', 'I002', 'Evento2', 'Taller de marketing', '2023-02-15', '2023-02-15'),
+('EC003', 'I003', 'Evento3', 'Reunión de proyecto', '2023-03-20', '2023-03-20'),
+('EC004', 'I004', 'Evento4', 'Seminario de ventas', '2023-04-25', '2023-04-25'),
+('EC005', 'I005', 'Evento5', 'Capacitación de personal', '2023-05-30', '2023-05-30'),
+('EC006', 'I006', 'Evento6', 'Presentación de resultados', '2023-06-05', '2023-06-05'),
+('EC007', 'I007', 'Evento7', 'Taller de innovación', '2023-07-10', '2023-07-10'),
+('EC008', 'I008', 'Evento8', 'Feria de negocios', '2023-08-15', '2023-08-15'),
+('EC009', 'I009', 'Evento9', 'Exposición de productos', '2023-09-20', '2023-09-20'),
+('EC010', 'I010', 'Evento10', 'Cierre de proyecto', '2023-10-25', '2023-10-25');
 
 -- Poblamiento de datos para Program_Mantenimiento
 INSERT INTO Program_Mantenimiento (dod_mantenimiento, plazo, descripcion, estado, nombre_instalacion, id_administrador, prioridad)
@@ -359,43 +358,43 @@ VALUES
 ('AR010', '2023-10-20', 'Acuerdo de pago por préstamo', 950, 'P010', 'F010');
 
 -- Poblamiento de datos para Contrato_Alquiler
-INSERT INTO Contrato_Alquiler (fecha_inicio, monto, condicion, id_contrato, fecha_vencimiento, estado, porcentaje, id_documento, id_factura, id_espacio_comercial)
+INSERT INTO Contrato_Alquiler (id_contrato, fecha_inicio, monto, condicion, fecha_vencimiento, estado, porcentaje, id_documento, id_factura, id_espacio_comercial)
 VALUES
-('2023-01-01', 500.00, 'Mensual', 'CA001', '2024-01-01', 'Activo', 5.00, 'D001', 'F001', 'EC001'),
-('2023-02-01', 600.00, 'Mensual', 'CA002', '2024-02-01', 'Activo', 4.50, 'D002', 'F002', 'EC002'),
-('2023-03-01', 700.00, 'Mensual', 'CA003', '2024-03-01', 'Activo', 4.00, 'D003', 'F003', 'EC003'),
-('2023-04-01', 800.00, 'Mensual', 'CA004', '2024-04-01', 'Activo', 3.50, 'D004', 'F004', 'EC004'),
-('2023-05-01', 900.00, 'Mensual', 'CA005', '2024-05-01', 'Activo', 3.00, 'D005', 'F005', 'EC005'),
-('2023-06-01', 1000.00, 'Mensual', 'CA006', '2024-06-01', 'Activo', 2.50, 'D006', 'F006', 'EC006'),
-('2023-07-01', 1100.00, 'Mensual', 'CA007', '2024-07-01', 'Activo', 2.00, 'D007', 'F007', 'EC007'),
-('2023-08-01', 1200.00, 'Mensual', 'CA008', '2024-08-01', 'Activo', 1.50, 'D008', 'F008', 'EC008'),
-('2023-09-01', 1300.00, 'Mensual', 'CA009', '2024-09-01', 'Activo', 1.00, 'D009', 'F009', 'EC009'),
-('2023-10-01', 1400.00, 'Mensual', 'CA010', '2024-10-01', 'Activo', 0.50, 'D010', 'F010', 'EC010');
+('CA001', '2023-01-01', 500.00, 'Mensual', '2024-01-01', 'Activo', 5.00, 'D001', 'F001', 'EC001'),
+('CA002', '2023-02-01', 600.00, 'Mensual', '2024-02-01', 'Activo', 4.50, 'D002', 'F002', 'EC002'),
+('CA003', '2023-03-01', 700.00, 'Mensual', '2024-03-01', 'Activo', 4.00, 'D003', 'F003', 'EC003'),
+('CA004', '2023-04-01', 800.00, 'Mensual', '2024-04-01', 'Activo', 3.50, 'D004', 'F004', 'EC004'),
+('CA005', '2023-05-01', 900.00, 'Mensual', '2024-05-01', 'Activo', 3.00, 'D005', 'F005', 'EC005'),
+('CA006', '2023-06-01', 1000.00, 'Mensual', '2024-06-01', 'Activo', 2.50, 'D006', 'F006', 'EC006'),
+('CA007', '2023-07-01', 1100.00, 'Mensual', '2024-07-01', 'Activo', 2.00, 'D007', 'F007', 'EC007'),
+('CA008', '2023-08-01', 1200.00, 'Mensual', '2024-08-01', 'Activo', 1.50, 'D008', 'F008', 'EC008'),
+('CA009', '2023-09-01', 1300.00, 'Mensual', '2024-09-01', 'Activo', 1.00, 'D009', 'F009', 'EC009'),
+('CA010', '2023-10-01', 1400.00, 'Mensual', '2024-10-01', 'Activo', 0.50, 'D010', 'F010', 'EC010');
 
 -- Poblamiento de datos para Registro_de_incidencia
-INSERT INTO Registro_de_incidencia (descripcion, fecha_registro, hora_registro, cod_incidencia, estado, nombre_instalacion, dod_mantenimiento, id_empleado)
+INSERT INTO Registro_de_incidencia (cod_incidencia, descripcion, fecha_registro, hora_registro, estado, nombre_instalacion, dod_mantenimiento, id_empleado)
 VALUES
-('Incidencia en el aire acondicionado', '2023-01-05', '2023-01-05 10:00:00', 'I001', 'Pendiente', 'Zona de comidas', 'PM001', 'E001'),
-('Fuga de agua en el baño', '2023-02-10', '2023-02-10 11:00:00', 'I002', 'Programado', 'Baño A', 'PM002', 'E002'),
-('Problemas con la iluminación', '2023-03-15', '2023-03-15 12:00:00', 'I003', 'Pendiente', 'Tienda 2', 'PM003', 'E003'),
-('Ruido extraño en el ascensor', '2023-04-20', '2023-04-20 13:00:00', 'I004', 'Programado', 'Zona comun', 'PM004', 'E004'),
-('Fugas en el sistema de calefacción', '2023-05-25', '2023-05-25 14:00:00', 'I005', 'Pendiente', 'Estacionamiento', 'PM005', 'E005'),
-('Problema con la red eléctrica', '2023-06-30', '2023-06-30 15:00:00', 'I006', 'Programado', 'Zona de tiendas', 'PM006', 'E006'),
-('Incidencia en el sistema de ventilación', '2023-07-05', '2023-07-05 16:00:00', 'I007', 'Pendiente', 'Tienda 10', 'PM007', 'E007'),
-('Problemas de aire acondicionado', '2023-08-10', '2023-08-10 17:00:00', 'I008', 'Programado', 'Zona de servicios', 'PM008', 'E008'),
-('Falla del sistema de las pantallas tactiles', '2023-09-15', '2023-09-15 18:00:00', 'I009', 'Pendiente', 'Zona comun', 'PM009', 'E009'),
-('Problemas con la conexión de internet', '2023-10-20', '2023-10-20 19:00:00', 'I010', 'Programado', 'Area de sistemas', 'PM010', 'E010');
+('I001', 'Incidencia en el aire acondicionado', '2023-01-05', '2023-01-05 10:00:00', 'Pendiente', 'Zona de comidas', 'PM001', 'E001'),
+('I002', 'Fuga de agua en el baño', '2023-02-10', '2023-02-10 11:00:00', 'Programado', 'Baño A', 'PM002', 'E002'),
+('I003', 'Problemas con la iluminación', '2023-03-15', '2023-03-15 12:00:00', 'Pendiente', 'Tienda 2', 'PM003', 'E003'),
+('I004', 'Ruido extraño en el ascensor', '2023-04-20', '2023-04-20 13:00:00', 'Programado', 'Zona comun', 'PM004', 'E004'),
+('I005', 'Fugas en el sistema de calefacción', '2023-05-25', '2023-05-25 14:00:00', 'Pendiente', 'Estacionamiento', 'PM005', 'E005'),
+('I006', 'Problema con la red eléctrica', '2023-06-30', '2023-06-30 15:00:00', 'Programado', 'Zona de tiendas', 'PM006', 'E006'),
+('I007', 'Incidencia en el sistema de ventilación', '2023-07-05', '2023-07-05 16:00:00', 'Pendiente', 'Tienda 10', 'PM007', 'E007'),
+('I008', 'Problemas de aire acondicionado', '2023-08-10', '2023-08-10 17:00:00', 'Programado', 'Zona de servicios', 'PM008', 'E008'),
+('I009', 'Falla del sistema de las pantallas táctiles', '2023-09-15', '2023-09-15 18:00:00', 'Pendiente', 'Zona comun', 'PM009', 'E009'),
+('I010', 'Problemas con la conexión de internet', '2023-10-20', '2023-10-20 19:00:00', 'Programado', 'Area de sistemas', 'PM010', 'E010');
 
 -- Poblamiento de datos para Registro_Mantenimiento
-INSERT INTO Registro_Mantenimiento (observaciones, cod_r_mantenimiento, fecha_realizada, hora_inicio, hora_fin, nombre, dod_mantenimiento, id_empleado)
+INSERT INTO Registro_Mantenimiento (cod_r_mantenimiento, observaciones, fecha_realizada, hora_inicio, hora_fin, nombre, dod_mantenimiento, id_empleado)
 VALUES
-('Reemplazo de filtro de aire', 'RM001', '2023-01-10', '2023-01-10 09:00:00', '2023-01-10 10:00:00', 'Tienda 10', 'PM001', 'E001'),
-('Ajuste de luces', 'RM002', '2023-02-15', '2023-02-15 10:00:00', '2023-02-15 11:00:00', 'Zona comun', 'PM002', 'E002'),
-('Mantenimiento del sistema de ventilacion', 'RM003', '2023-03-20', '2023-03-20 11:00:00', '2023-03-20 12:00:00', 'Zona comun', 'PM003', 'E003'),
-('Reparación de goteras', 'RM004', '2023-04-25', '2023-04-25 12:00:00', '2023-04-25 13:00:00', 'Baño A', 'PM004', 'E004'),
-('Revisión de el sistema electrico', 'RM005', '2023-05-30', '2023-05-30 13:00:00', '2023-05-30 14:00:00', 'Estacionamiento', 'PM005', 'E005'),
-('Cambio de bombillas', 'RM006', '2023-06-05', '2023-06-05 14:00:00', '2023-06-05 15:00:00', 'Zona de comidas', 'PM006', 'E006'),
-('Mantenimiento de equipos de sonido', 'RM007', '2023-07-10', '2023-07-10 15:00:00', '2023-07-10 16:00:00', 'Zona de entretenimientos', 'PM007', 'E007'),
-('Limpieza de alfombras', 'RM008', '2023-08-15', '2023-08-15 16:00:00', '2023-08-15 17:00:00', 'Zona comun', 'PM008', 'E008'),
-('Revisión de sistemas de seguridad', 'RM009', '2023-09-20', '2023-09-20 17:00:00', '2023-09-20 18:00:00', 'Zona de servicios', 'PM009', 'E009'),
-('Mantenimiento de aires acondicionados', 'RM010', '2023-10-25', '2023-10-25 18:00:00', '2023-10-25 19:00:00', 'Zona comun', 'PM010', 'E010');
+('RM001', 'Reemplazo de filtro de aire', '2023-01-10', '2023-01-10 09:00:00', '2023-01-10 10:00:00', 'Tienda 10', 'PM001', 'E001'),
+('RM002', 'Ajuste de luces', '2023-02-15', '2023-02-15 10:00:00', '2023-02-15 11:00:00', 'Zona comun', 'PM002', 'E002'),
+('RM003', 'Mantenimiento del sistema de ventilación', '2023-03-20', '2023-03-20 11:00:00', '2023-03-20 12:00:00', 'Zona comun', 'PM003', 'E003'),
+('RM004', 'Reparación de goteras', '2023-04-25', '2023-04-25 12:00:00', '2023-04-25 13:00:00', 'Baño A', 'PM004', 'E004'),
+('RM005', 'Revisión del sistema eléctrico', '2023-05-30', '2023-05-30 13:00:00', '2023-05-30 14:00:00', 'Estacionamiento', 'PM005', 'E005'),
+('RM006', 'Cambio de bombillas', '2023-06-05', '2023-06-05 14:00:00', '2023-06-05 15:00:00', 'Zona de comidas', 'PM006', 'E006'),
+('RM007', 'Mantenimiento de equipos de sonido', '2023-07-10', '2023-07-10 15:00:00', '2023-07-10 16:00:00', 'Zona de entretenimientos', 'PM007', 'E007'),
+('RM008', 'Limpieza de alfombras', '2023-08-15', '2023-08-15 16:00:00', '2023-08-15 17:00:00', 'Zona comun', 'PM008', 'E008'),
+('RM009', 'Revisión de sistemas de seguridad', '2023-09-20', '2023-09-20 17:00:00', '2023-09-20 18:00:00', 'Zona de servicios', 'PM009', 'E009'),
+('RM010', 'Mantenimiento de aires acondicionados', '2023-10-25', '2023-10-25 18:00:00', '2023-10-25 19:00:00', 'Zona comun', 'PM010', 'E010');
