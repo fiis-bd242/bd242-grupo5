@@ -251,6 +251,8 @@ CREATE TABLE Evento
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY, 
   nombre_evento CHAR(50) UNIQUE NOT NULL,
   descripcion VARCHAR(100) NOT NULL,
+  categoria VARCHAR(100) NOT NULL,
+  objetivo VARCHAR(50) NOT NULL,
   fecha_inicio DATE NOT NULL,
   fecha_fin DATE NOT NULL,
   id_espacio_comun CHAR(10) NOT NULL,
