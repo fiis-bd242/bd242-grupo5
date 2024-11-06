@@ -81,7 +81,7 @@ CREATE TABLE Persona
 CREATE TABLE Empleado
 (
   id_empleado CHAR(10) NOT NULL PRIMARY KEY,
-  cargo VARCHAR(20) NOT NULL,
+  cargo VARCHAR(50) NOT NULL,
   first_last_name VARCHAR(20) NOT NULL,
   second_last_name VARCHAR(20) NOT NULL,
   fecha_nacimiento DATE NOT NULL,
@@ -130,9 +130,11 @@ CREATE TABLE Solicitud
 
 CREATE TABLE Zona
 (
-  nombre_zona VARCHAR(25) NOT NULL PRIMARY KEY,
+  id_zona CHAR(5),
   piso INT NOT NULL,
-  referencia VARCHAR(256) NOT NULL
+  referencia VARCHAR(256) NOT NULL,
+  nombre_zona VARCHAR(25) NOT NULL,
+  PRIMARY KEY (id_zona)
 );
 
 CREATE TABLE Actividad
@@ -168,11 +170,12 @@ CREATE TABLE Prioridad
 );
 
 CREATE TABLE Instalacion
-(
-  nombre_instalacion CHAR(30) NOT NULL PRIMARY KEY,
-  tipo tipo_instalacion NOT NULL,
-  nombre_zona VARCHAR(25) NOT NULL,
-  FOREIGN KEY (nombre_zona) REFERENCES Zona(nombre_zona)
+( 
+  id_instalacion CHAR(6) not null,
+  nombre_instalacion VARCHAR(40) NOT NULL,
+  id_zona CHAR(5) NOT NULL,
+  PRIMARY KEY (id_instalacion),
+  FOREIGN KEY (id_zona) REFERENCES Zona(id_zona)
 );
 
 CREATE TABLE Espacio_Comercial
@@ -182,8 +185,8 @@ CREATE TABLE Espacio_Comercial
   estado VARCHAR(10) NOT NULL,
   area NUMERIC(6, 2) NOT NULL,
   tarifa NUMERIC(6, 2) NOT NULL,
-  nombre_zona VARCHAR(25) NOT NULL,
-  FOREIGN KEY (nombre_zona) REFERENCES Zona(nombre_zona)
+  id_zona CHAR(5) NOT NULL,
+  FOREIGN KEY (id_zona) REFERENCES Zona(id_zona)
 );
 
 CREATE TABLE Inquilino
@@ -206,8 +209,8 @@ CREATE TABLE Espacio_comun
   area FLOAT NOT NULL,
   precio_por_dia FLOAT NOT NULL,
   motivo_de_uso VARCHAR(100) NOT NULL,
-  nombre_zona VARCHAR(25) NOT NULL,
-  FOREIGN KEY (nombre_zona) REFERENCES Zona(nombre_zona)
+  id_zona CHAR(5) NOT NULL,
+  FOREIGN KEY (id_zona) REFERENCES Zona(id_zona)
 );
 
 CREATE TABLE Factura
@@ -256,18 +259,34 @@ CREATE TABLE Evento
   FOREIGN KEY (id_inquilino) REFERENCES Inquilino(id_inquilino)
 );
 
+CREATE TABLE Registro_de_incidencia
+(
+  cod_incidencia SERIAL NOT NULL,
+  descripcion VARCHAR(100) NOT NULL,
+  fecha_hora_registro TIMESTAMP NOT NULL,
+  estado estado_incidencia default 'Pendiente',
+  id_instalacion CHAR(6) NOT NULL,
+  id_empleado CHAR(10) NOT NULL,
+  PRIMARY KEY (cod_incidencia),
+  FOREIGN KEY (id_instalacion) REFERENCES Instalacion(id_instalacion),
+  FOREIGN KEY (id_empleado) REFERENCES Empleado(id_empleado)
+);
+
 CREATE TABLE Program_Mantenimiento
 (
-  dod_mantenimiento CHAR(10) NOT NULL PRIMARY KEY,
+  dod_mantenimiento SERIAL NOT NULL,
   plazo DATE NOT NULL,
-  descripcion VARCHAR(64) NOT NULL,
-  estado estado_mantenimiento NOT NULL,
-  nombre_instalacion CHAR(30) NOT NULL,
-  id_administrador CHAR(10) NOT NULL,
+  descripcion VARCHAR(100) NOT NULL,
+  estado estado_mantenimiento default 'Pendiente',
+  id_instalacion CHAR(6) NOT NULL,
+  id_encargado CHAR(10) NOT NULL,
   prioridad CHAR(2) NOT NULL,
-  FOREIGN KEY (nombre_instalacion) REFERENCES Instalacion(nombre_instalacion),
-  FOREIGN KEY (id_administrador) REFERENCES Empleado(id_empleado),
-  FOREIGN KEY (prioridad) REFERENCES Prioridad(prioridad)
+  cod_incidencia INTEGER,
+  PRIMARY KEY (dod_mantenimiento),
+  FOREIGN KEY (id_instalacion) REFERENCES Instalacion(id_instalacion),
+  FOREIGN KEY (id_encargado) REFERENCES Empleado(id_empleado),
+  FOREIGN KEY (prioridad) REFERENCES Prioridad(prioridad),
+  foreign key (cod_incidencia) references Registro_de_incidencia(cod_incidencia)
 );
 
 CREATE TABLE Acuerdo_recobro
@@ -299,32 +318,18 @@ CREATE TABLE Contrato_Alquiler
   FOREIGN KEY (id_espacio_comercial) REFERENCES Espacio_Comercial(id_espacio_comercial)
 );
 
-CREATE TABLE Registro_de_incidencia
-(
-  cod_incidencia CHAR(10) NOT NULL PRIMARY KEY,
-  descripcion VARCHAR(64) NOT NULL,
-  fecha_registro DATE NOT NULL,
-  hora_registro TIMESTAMP NOT NULL,
-  estado estado_incidencia NOT NULL,
-  nombre_instalacion CHAR(30) NOT NULL,
-  dod_mantenimiento CHAR(10) NOT NULL,
-  id_empleado CHAR(10) NOT NULL,
-  FOREIGN KEY (nombre_instalacion) REFERENCES Instalacion(nombre_instalacion),
-  FOREIGN KEY (dod_mantenimiento) REFERENCES Program_Mantenimiento(dod_mantenimiento),
-  FOREIGN KEY (id_empleado) REFERENCES Empleado(id_empleado)
-);
-
 CREATE TABLE Registro_Mantenimiento
 (
-  cod_r_mantenimiento CHAR(10) NOT NULL PRIMARY KEY,
-  observaciones VARCHAR(64) NOT NULL,
+  cod_r_mantenimiento SERIAL NOT NULL,	
+  observaciones VARCHAR(64),
   fecha_realizada DATE NOT NULL,
-  hora_inicio TIMESTAMP NOT NULL,
-  hora_fin TIMESTAMP NOT NULL,
-  nombre CHAR(30) NOT NULL,
-  dod_mantenimiento CHAR(10) NOT NULL,
+  hora_inicio TIME NOT NULL,
+  hora_fin TIME NOT NULL,
+  id_instalacion CHAR(6) NOT NULL,
+  dod_mantenimiento INTEGER NOT NULL,
   id_empleado CHAR(10) NOT NULL,
-  FOREIGN KEY (nombre) REFERENCES Instalacion(nombre_instalacion),
+  PRIMARY KEY (cod_r_mantenimiento),
+  FOREIGN KEY (id_instalacion) REFERENCES Instalacion(id_instalacion),
   FOREIGN KEY (dod_mantenimiento) REFERENCES Program_Mantenimiento(dod_mantenimiento),
   FOREIGN KEY (id_empleado) REFERENCES Empleado(id_empleado)
 );
