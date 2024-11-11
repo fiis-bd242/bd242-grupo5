@@ -104,9 +104,11 @@ CREATE TABLE Recobro
 CREATE TABLE Proyecto_recobro
 (
   id_proyecto CHAR(10) NOT NULL PRIMARY KEY,
+  nombre_proyecto VARCHAR(30) NOT NULL,
   costos FLOAT NOT NULL,
   estado_proyecto estado_proyecto NOT NULL,
-  nombre_proyecto VARCHAR(30) NOT NULL,
+  fecha_inicio_proyecto DATE NOT NULL,
+  fecha_fin_proyecto DATE NOT NULL,
   id_recobro CHAR(10) NOT NULL,
   FOREIGN KEY (id_recobro) REFERENCES Recobro(id_recobro)
 );
