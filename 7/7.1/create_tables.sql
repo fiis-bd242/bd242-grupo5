@@ -140,10 +140,14 @@ CREATE TABLE Zona
 CREATE TABLE Actividad
 (
   cod_actividad CHAR(10) NOT NULL PRIMARY KEY,
+  nombre_actividad CHAR(50) NOT NULL,
   descripcion VARCHAR(30) NOT NULL,
-  fecha_inicio DATE NOT NULL,
-  fecha_fin DATE NOT NULL,
+  fecha_inicio_actividad DATE NOT NULL,
+  fecha_fin_actividad DATE NOT NULL,
+  Costo_actividad Decimal(5,2) NOT NULL,
+  Estado_actividad VARCHAR(10) NOT NULL,
   id_proyecto CHAR(10) NOT NULL,
+  
   FOREIGN KEY (id_proyecto) REFERENCES Proyecto_recobro(id_proyecto)
 );
 
