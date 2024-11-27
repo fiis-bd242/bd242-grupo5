@@ -16,7 +16,7 @@ def navbar() -> rx.Component:
                 rx.hstack(
                     rx.link(
                         rx.image(
-                            src="/mallplaza_icon.png",
+                            src="/logo-blanco.png",
                             width="2.25em",
                             height="auto",
                             border_radius="25%",
@@ -25,7 +25,7 @@ def navbar() -> rx.Component:
                     ),
                     rx.link(
                         rx.heading(
-                            "MallPlaza", size="7", weight="bold"
+                            "MallPlaza", size="7", weight="bold", color="white"
                         ),
                         href=navigation.routes.HOME_ROUTE
                     ),
@@ -68,7 +68,7 @@ def navbar() -> rx.Component:
             rx.hstack(
                 rx.hstack(
                     rx.image(
-                        src="/mallplaza_icon.png",
+                        src="/logo-blanco.png",
                         width="2em",
                         height="auto",
                         border_radius="25%",
@@ -108,7 +108,7 @@ def navbar() -> rx.Component:
                 align_items="center",
             ),
         ),
-        bg=rx.color("ruby", 3),
+        bg=rx.color("red",10),
         padding="1em",
         # position="fixed",
         # top="0px",

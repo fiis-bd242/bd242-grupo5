@@ -8,6 +8,7 @@ def sidebar_logout_item() -> rx.Component:
         rx.hstack(
             rx.icon("log-out"),
             rx.text("Log out", size="4"),
+            color="white",
             width="100%",
             padding_x="0.5rem",
             padding_y="0.75rem",
@@ -43,6 +44,7 @@ def sidebar_dark_mode_toggle_item() -> rx.Component:
             width="100%",
             padding_x="0.5rem",
             padding_y="0.75rem",
+            color="white",
             align="center",
             style={
                 "_hover": {
@@ -68,6 +70,7 @@ def sidebar_item(
         rx.hstack(
             rx.icon(icon),
             rx.text(text, size="4"),
+            color="white",
             width="100%",
             padding_x="0.5rem",
             padding_y="0.75rem",
@@ -89,7 +92,7 @@ def sidebar_item(
 def sidebar_items() -> rx.Component:
     return rx.vstack(
         sidebar_item("Inicio", "layout-dashboard", navigation.routes.HOME_ROUTE),
-        sidebar_item("Blog", "square-library", navigation.routes.BLOG_POSTS_ROUTE),
+        #sidebar_item("Blog", "square-library", navigation.routes.BLOG_POSTS_ROUTE),
         sidebar_item("Solicitudes", "contact", navigation.routes.CONTACT_ENTRIES_ROUTE),
         sidebar_item("Empleados", "users", navigation.routes.EMPLEADO_ROUTE),
         sidebar_item("Arrendamientos", "receipt-text", navigation.routes.ARRENDAMIENTO_ROUTE),
@@ -109,13 +112,13 @@ def sidebar() -> rx.Component:
             rx.vstack(
                 rx.hstack(
                     rx.image(
-                        src="/mallplaza_icon.png",
+                        src="/logo-blanco.png",
                         width="2.25em",
                         height="auto",
                         border_radius="25%",
                     ),
                     rx.heading(
-                        "Mallplaza", size="7", weight="bold"
+                        "Mallplaza", size="7", weight="bold", color="white"
                     ),
                     align="center",
                     justify="start",
@@ -172,7 +175,7 @@ def sidebar() -> rx.Component:
                 # z_index="5",
                 padding_x="1em",
                 padding_y="1.5em",
-                bg=rx.color("ruby", 3),
+                bg=rx.color("red", 10),
                 align="start",
                 height="100vh",
                 #height="650px",
@@ -244,7 +247,7 @@ def sidebar() -> rx.Component:
                         height="100%",
                         width="20em",
                         padding="1.5em",
-                        bg=rx.color("ruby", 2),
+                        bg=rx.color("red", 10),
                     ),
                     width="100%",
                 ),

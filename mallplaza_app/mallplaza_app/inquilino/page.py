@@ -14,3 +14,4 @@ def about_inquilino() -> rx.Component:
             min_height="85vh",
         )
     return base_page(my_child)
+
