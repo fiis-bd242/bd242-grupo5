@@ -11,5 +11,6 @@ engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 from .models import Base
+import reflex as rx
 
-Base.metadata.create_all(bind=engine)
+target_metada = [Base.metada, rx.Model.metadata]
