@@ -122,8 +122,9 @@ app.add_page(
 
 #Módulo de Inquilinos
 app.add_page(
-    inquilino.about_inquilino,
-    route=navigation.routes.INQUILINO_ROUTE
+    inquilino.inquilino_page,
+    route=navigation.routes.INQUILINO_ROUTE,
+    on_load=inquilino.InquilinoState.get_all_inquilino
 )
 
 #Módulo facturación

@@ -1,5 +1,7 @@
-from .page import about_inquilino
+from .page import inquilino_page
+from .page import InquilinoState
 
 __all__ = {
-    'about_inquilino',
+    'inquilino_page',
+    'InquilinoState',
 }

@@ -1,246 +1,305 @@
-from sqlalchemy import (
-    create_engine, Column, String, Integer, Float, Date, ForeignKey, Enum, Numeric, Time, Text, CHAR
-)
-from sqlalchemy.dialects.postgresql import ENUM, UUID
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.schema import ForeignKeyConstraint
-import uuid
+# import reflex as rx
+# import sqlalchemy
 
-Base = declarative_base()
-
-# Definiciones de los tipos ENUM en PostgreSQL
-estado_contrato = ENUM('Activo', 'Finalizado', 'Suspendido', name='estado_contrato')
-jornada_laboral = ENUM('Completa', 'Parcial', 'Turno rotativo', name='jornada_laboral')
-estado_recobro = ENUM('Enviado', 'Valorizando', 'Pendiente', 'Ejecutado', 'Completado', name='estado_recobro')
-estado_proyecto = ENUM('Ejecutado', 'Supervision', name='estado_proyecto')
-estado_solicitud = ENUM('Abierto', 'Cerrado', name='estado_solicitud')
-estado_inquilino = ENUM('Activo', 'Inactivo', name='estado_inquilino')
-estado_espacio_comun = ENUM('Ocupado', 'Disponible', 'En mantenimiento', name='estado_espacio_comun')
-estado_factura = ENUM('Pendiente', 'Pagado', name='estado_factura')
-tipo_recordatorio = ENUM('Previo', 'Posterior', name='tipo_recordatorio')
-estado_mantenimiento = ENUM('Pendiente', 'Hecho', name='estado_mantenimiento')
-estado_contrato_alquiler = ENUM('Activo', 'Expirado', 'Renovado', name='estado_contrato_alquiler')
-estado_incidencia = ENUM('Pendiente', 'Programado', name='estado_incidencia')
-tipo_instalacion = ENUM('Zona', 'Tienda', 'Modulo', name='tipo_instalacion')
-metodo_pago = ENUM('Manual', 'Automatico', name='metodo_pago')
-
-# Creación de clases para las tablas
-class ContratoEmpleado(Base):
-    __tablename__ = 'contrato_empleado'
-    id_contrato_empleado = Column(CHAR(10), primary_key=True)
-    descripcion_cargo = Column(String(50), nullable=False)
-    fecha_inicio = Column(Date, nullable=False)
-    fecha_fin = Column(Date, nullable=False)
-    estado_contrato = Column(estado_contrato, nullable=False)
-    jornada_laboral = Column(jornada_laboral, nullable=False)
-
-class Persona(Base):
-    __tablename__ = 'persona'
-    id_persona = Column(CHAR(10), primary_key=True)
-    nombre = Column(String(15), nullable=False)
-    nro_domicilio = Column(Integer, nullable=False)
-    ciudad = Column(String(30), nullable=False)
-    nro_documento = Column(String(11), nullable=False)
-    tipo_documento = Column(String(20), nullable=False)
-
-class Empleado(Base):
-    __tablename__ = 'empleado'
-    id_empleado = Column(CHAR(10), primary_key=True)
-    cargo = Column(String(50), nullable=False)
-    first_last_name = Column(String(20), nullable=False)
-    second_last_name = Column(String(20), nullable=False)
-    fecha_nacimiento = Column(Date, nullable=False)
-    id_persona = Column(CHAR(10), ForeignKey('persona.id_persona'), nullable=False)
-    id_contrato_empleado = Column(CHAR(10), ForeignKey('contrato_empleado.id_contrato_empleado'), nullable=False)
-
-class Recobro(Base):
-    __tablename__ = 'recobro'
-    id_recobro = Column(CHAR(10), primary_key=True)
-    nombre_recobro = Column(String(20), nullable=False)
-    descripcion_recobro = Column(String(50), nullable=False)
-    razon_recobro = Column(String(30), nullable=False)
-    categoria_recobro = Column(String(20), nullable=False)
-    estado_recobro = Column(estado_recobro, nullable=False)
+# from datetime import date, datetime
+# from typing import Optional
+# from enum import Enum
 
 
-class ProyectoRecobro(Base):
-    __tablename__ = 'proyecto_recobro'
-    id_proyecto = Column(CHAR(10), primary_key=True)
-    nombre_proyecto = Column(String(30), nullable=False)
-    costos = Column(Float, nullable=False)
-    estado_proyecto = Column(estado_proyecto, nullable=False)
-    fecha_inicio_proyecto = Column(Date, nullable=False)
-    fecha_fin_proyecto = Column(Date, nullable=False)
-    id_recobro = Column(CHAR(10), ForeignKey('recobro.id_recobro'), nullable=False)
+# # Definición de ENUMs
+# class EstadoContrato(str, Enum):
+#     Activo = "Activo"
+#     Finalizado = "Finalizado"
+#     Suspendido = "Suspendido"
 
-class Documento(Base):
-    __tablename__ = 'documento'
-    id_documento = Column(CHAR(10), primary_key=True)
-    tipo_documento = Column(String(50), nullable=False)
-    fecha_subido = Column(Date, nullable=False)
 
-class Solicitud(Base):
-    __tablename__ = 'solicitud'
-    id_solicitud = Column(CHAR(10), primary_key=True)
-    estado_solicitud = Column(estado_solicitud, nullable=False)
-    fecha_solicitud = Column(Date, nullable=False)
-    fecha_resolucion = Column(Date, nullable=False)
-    id_documento = Column(CHAR(10), ForeignKey('documento.id_documento'), nullable=False)
+# class JornadaLaboral(str, Enum):
+#     Completa = "Completa"
+#     Parcial = "Parcial"
+#     TurnoRotativo = "Turno rotativo"
 
-class Zona(Base):
-    __tablename__ = 'zona'
-    id_zona = Column(CHAR(5), primary_key=True)
-    piso = Column(Integer, nullable=False)
-    referencia = Column(String(256), nullable=False)
-    nombre_zona = Column(String(25), nullable=False)
 
-class Actividad(Base):
-    __tablename__ = 'actividad'
-    cod_actividad = Column(CHAR(10), primary_key=True)
-    nombre_actividad = Column(CHAR(50), nullable=False)
-    descripcion = Column(String(30), nullable=False)
-    fecha_inicio_actividad = Column(Date, nullable=False)
-    fecha_fin_actividad = Column(Date, nullable=False)
-    costo_actividad = Column(Numeric(5, 2), nullable=False)
-    estado_actividad = Column(String(10), nullable=False)
-    id_proyecto = Column(CHAR(10), ForeignKey('proyecto_recobro.id_proyecto'), nullable=False)
+# class EstadoRecobro(str, Enum):
+#     Enviado = "Enviado"
+#     Valorizando = "Valorizando"
+#     Pendiente = "Pendiente"
+#     Ejecutado = "Ejecutado"
+#     Completado = "Completado"
 
-class PersonaEmail(Base):
-    __tablename__ = 'persona_email'
-    email = Column(String(50), primary_key=True)
-    id_persona = Column(CHAR(10), ForeignKey('persona.id_persona'), primary_key=True)
 
-class PersonaTelefono(Base):
-    __tablename__ = 'persona_telefono'
-    telefono = Column(Integer, primary_key=True)
-    id_persona = Column(CHAR(10), ForeignKey('persona.id_persona'), primary_key=True)
+# class EstadoProyecto(str, Enum):
+#     Ejecutado = "Ejecutado"
+#     Supervision = "Supervision"
 
-class Prioridad(Base):
-    __tablename__ = 'prioridad'
-    prioridad = Column(CHAR(2), primary_key=True)
-    descrip_prioridad = Column(String(64), nullable=False)
 
-class Instalacion(Base):
-    __tablename__ = 'instalacion'
-    id_instalacion = Column(CHAR(6), primary_key=True)
-    nombre_instalacion = Column(String(40), nullable=False)
-    id_zona = Column(CHAR(5), ForeignKey('zona.id_zona'), nullable=False)
+# class EstadoSolicitud(str, Enum):
+#     Abierto = "Abierto"
+#     Cerrado = "Cerrado"
 
-class EspacioComercial(Base):
-    __tablename__ = 'espacio_comercial'
-    id_espacio_comercial = Column(CHAR(10), primary_key=True)
-    tipo_inmueble = Column(String(10), nullable=False)
-    estado = Column(String(10), nullable=False)
-    area = Column(Numeric(6, 2), nullable=False)
-    tarifa = Column(Numeric(6, 2), nullable=False)
-    id_zona = Column(CHAR(5), ForeignKey('zona.id_zona'), nullable=False)
 
-class Inquilino(Base):
-    __tablename__ = 'inquilino'
-    id_inquilino = Column(CHAR(10), primary_key=True)
-    razon_social = Column(String(50), nullable=False)
-    fecha_eliminacion = Column(Date)
-    fecha_registro = Column(Date, nullable=False)
-    estado_inquilino = Column(estado_inquilino, nullable=False)
-    id_persona = Column(CHAR(10), ForeignKey('persona.id_persona'), nullable=False)
-    id_espacio_comercial = Column(CHAR(10), ForeignKey('espacio_comercial.id_espacio_comercial'), nullable=False)
+# class EstadoInquilino(str, Enum):
+#     Activo = "Activo"
+#     Inactivo = "Inactivo"
 
-class EspacioComun(Base):
-    __tablename__ = 'espacio_comun'
-    id_espacio_comun = Column(CHAR(10), primary_key=True)
-    estado = Column(estado_espacio_comun, nullable=False)
-    area = Column(Float, nullable=False)
-    precio_por_dia = Column(Float, nullable=False)
-    motivo_de_uso = Column(String(100), nullable=False)
-    id_zona = Column(CHAR(5), ForeignKey('zona.id_zona'), nullable=False)
 
-class Factura(Base):
-    __tablename__ = 'factura'
-    id_factura = Column(CHAR(10), primary_key=True)
-    estado_factura = Column(estado_factura, nullable=False)
-    fecha_emision = Column(Date, nullable=False)
-    monto_total = Column(Float, nullable=False)
-    fecha_vencimiento = Column(Date, nullable=False)
-    id_inquilino = Column(CHAR(10), ForeignKey('inquilino.id_inquilino'), nullable=False)
+# class EstadoEspacioComun(str, Enum):
+#     Ocupado = "Ocupado"
+#     Disponible = "Disponible"
+#     EnMantenimiento = "En mantenimiento"
 
-class Recordatorio(Base):
-    __tablename__ = 'recordatorio'
-    id_recordatorio = Column(CHAR(10), primary_key=True)
-    tipo_recordatorio = Column(tipo_recordatorio, nullable=False)
-    fecha_envio = Column(Date, nullable=False)
-    contenido = Column(String(50), nullable=False)
-    id_factura = Column(CHAR(10), ForeignKey('factura.id_factura'), nullable=False)
 
-class Pago(Base):
-    __tablename__ = 'pago'
-    id_pago = Column(CHAR(10), primary_key=True)
-    fecha_pago = Column(Date, nullable=False)
-    metodo_pago = Column(metodo_pago, nullable=False)
-    monto_pago = Column(Float, nullable=False)
-    tipo_moneda = Column(String(10), nullable=False)
-    id_factura = Column(CHAR(10), ForeignKey('factura.id_factura'), nullable=False)
+# class EstadoFactura(str, Enum):
+#     Pendiente = "Pendiente"
+#     Pagado = "Pagado"
 
-class Evento(Base):
-    __tablename__ = 'evento'
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    nombre_evento = Column(CHAR(50), unique=True, nullable=False)
-    descripcion = Column(String(100), nullable=False)
-    categoria = Column(String(100), nullable=False)
-    objetivo = Column(String(50), nullable=False)
-    fecha_inicio = Column(Date, nullable=False)
-    fecha_fin = Column(Date, nullable=False)
-    id_espacio_comun = Column(CHAR(10), ForeignKey('espacio_comun.id_espacio_comun'), nullable=False)
-    id_inquilino = Column(CHAR(10), ForeignKey('inquilino.id_inquilino'), nullable=False)
 
-class RegistroIncidencia(Base):
-    __tablename__ = 'registro_incidencia'
-    cod_incidencia = Column(Integer, primary_key=True, autoincrement=True)
-    descripcion = Column(String(100), nullable=False)
-    fecha_hora_registro = Column(Date, nullable=False)
-    estado = Column(estado_incidencia, default='Pendiente')
-    id_instalacion = Column(CHAR(6), ForeignKey('instalacion.id_instalacion'), nullable=False)
-    id_empleado = Column(CHAR(10), ForeignKey('empleado.id_empleado'), nullable=False)
+# class TipoRecordatorio(str, Enum):
+#     Previo = "Previo"
+#     Posterior = "Posterior"
 
-class ProgramMantenimiento(Base):
-    __tablename__ = 'program_mantenimiento'
-    dod_mantenimiento = Column(Integer, primary_key=True, autoincrement=True)
-    plazo = Column(Date, nullable=False)
-    descripcion = Column(String(100), nullable=False)
-    estado = Column(estado_mantenimiento, default='Pendiente')
-    id_instalacion = Column(CHAR(6), ForeignKey('instalacion.id_instalacion'), nullable=False)
-    id_encargado = Column(CHAR(10), ForeignKey('empleado.id_empleado'), nullable=False)
-    prioridad = Column(CHAR(2), ForeignKey('prioridad.prioridad'), nullable=False)
-    cod_incidencia = Column(Integer, ForeignKey('registro_incidencia.cod_incidencia'))
 
-class AcuerdoRecobro(Base):
-    __tablename__ = 'acuerdo_recobro'
-    id_acuerdo = Column(CHAR(10), primary_key=True)
-    fecha_acuerdo = Column(Date, nullable=False)
-    descripcion_acuerdo = Column(String(40), nullable=False)
-    precio_acuerdo = Column(Integer, nullable=False)
-    id_proyecto = Column(CHAR(10), ForeignKey('proyecto_recobro.id_proyecto'), nullable=False)
-    id_factura = Column(CHAR(10), ForeignKey('factura.id_factura'), nullable=False)
+# class EstadoMantenimiento(str, Enum):
+#     Pendiente = "Pendiente"
+#     Hecho = "Hecho"
 
-class ContratoAlquiler(Base):
-    __tablename__ = 'contrato_alquiler'
-    id_contrato = Column(CHAR(10), primary_key=True)
-    fecha_inicio = Column(Date, nullable=False)
-    monto = Column(Numeric(10, 2), nullable=False)
-    condicion = Column(String(256), nullable=False)
-    fecha_vencimiento = Column(Date, nullable=False)
-    estado = Column(estado_contrato_alquiler, nullable=False)
-    porcentaje = Column(Numeric(5, 2), nullable=False)
-    id_documento = Column(CHAR(10), ForeignKey('documento.id_documento'), nullable=False)
-    id_factura = Column(CHAR(10), ForeignKey('factura.id_factura'), nullable=False)
-    id_espacio_comercial = Column(CHAR(10), ForeignKey('espacio_comercial.id_espacio_comercial'), nullable=False)
 
-class RegistroMantenimiento(Base):
-    __tablename__ = 'registro_mantenimiento'
-    cod_r_mantenimiento = Column(Integer, primary_key=True, autoincrement=True)
-    observaciones = Column(String(64))
-    fecha_realizada = Column(Date, nullable=False)
-    hora_inicio = Column(Time, nullable=False)
-    hora_fin = Column(Time, nullable=False)
-    id_instalacion = Column(CHAR(6), ForeignKey('instalacion.id_instalacion'), nullable=False)
-    dod_mantenimiento = Column(Integer, ForeignKey('program_mantenimiento.dod_mantenimiento'), nullable=False)
-    id_empleado = Column(CHAR(10), ForeignKey('empleado.id_empleado'), nullable=False)
+# class EstadoContratoAlquiler(str, Enum):
+#     Activo = "Activo"
+#     Expirado = "Expirado"
+#     Renovado = "Renovado"
+
+
+# class EstadoIncidencia(str, Enum):
+#     Pendiente = "Pendiente"
+#     Programado = "Programado"
+
+
+# class TipoInstalacion(str, Enum):
+#     Zona = "Zona"
+#     Tienda = "Tienda"
+#     Modulo = "Modulo"
+
+
+# class MetodoPago(str, Enum):
+#     Manual = "Manual"
+#     Automatico = "Automatico"
+
+
+# # Tablas definidas como modelos Reflex
+# class ContratoEmpleado(rx.Model, table=True):
+#     id_contrato_empleado: str
+#     descripcion_cargo: str
+#     fecha_inicio: date
+#     fecha_fin: date
+#     estado_contrato: EstadoContrato
+#     jornada_laboral: JornadaLaboral
+
+
+# class Persona(rx.Model, table=True):
+#     id_persona: str
+#     nombre: str
+#     nro_domicilio: int
+#     ciudad: str
+#     nro_documento: str
+#     tipo_documento: str
+
+
+# class Empleado(rx.Model, table=True):
+#     id_empleado: str
+#     cargo: str
+#     first_last_name: str
+#     second_last_name: str
+#     fecha_nacimiento: date
+#     id_persona: str
+#     id_contrato_empleado: str
+
+
+# class Recobro(rx.Model, table=True):
+#     id_recobro: str
+#     nombre_recobro: str
+#     descripcion_recobro: str
+#     razon_recobro: str
+#     categoria_recobro: str
+#     estado_recobro: EstadoRecobro
+
+
+# class ProyectoRecobro(rx.Model, table=True):
+#     id_proyecto: str
+#     nombre_proyecto: str
+#     costos: float
+#     estado_proyecto: EstadoProyecto
+#     fecha_inicio_proyecto: date
+#     fecha_fin_proyecto: date
+#     id_recobro: str
+
+
+# class Documento(rx.Model, table=True):
+#     id_documento: str
+#     tipo_documento: str
+#     fecha_subido: date
+
+
+# class Solicitud(rx.Model, table=True):
+#     id_solicitud: str
+#     estado_solicitud: EstadoSolicitud
+#     fecha_solicitud: date
+#     fecha_resolucion: date
+#     id_documento: str
+
+
+# class Zona(rx.Model, table=True):
+#     id_zona: str
+#     piso: int
+#     referencia: str
+#     nombre_zona: str
+
+
+# class Actividad(rx.Model, table=True):
+#     cod_actividad: str
+#     nombre_actividad: str
+#     descripcion: str
+#     fecha_inicio_actividad: date
+#     fecha_fin_actividad: date
+#     costo_actividad: float
+#     estado_actividad: str
+#     id_proyecto: str
+
+
+# class PersonaEmail(rx.Model, table=True):
+#     email: str
+#     id_persona: str
+
+
+# class PersonaTelefono(rx.Model, table=True):
+#     telefono: int
+#     id_persona: str
+
+
+# class Prioridad(rx.Model, table=True):
+#     prioridad: str
+#     descrip_prioridad: str
+
+
+# class Instalacion(rx.Model, table=True):
+#     id_instalacion: str
+#     nombre_instalacion: str
+#     id_zona: str
+
+
+# class EspacioComercial(rx.Model, table=True):
+#     id_espacio_comercial: str
+#     tipo_inmueble: str
+#     estado: str
+#     area: float
+#     tarifa: float
+#     id_zona: str
+
+
+# class Inquilino(rx.Model, table=True):
+#     id_inquilino: str
+#     razon_social: str
+#     fecha_eliminacion: Optional[date]
+#     fecha_registro: date
+#     estado_inquilino: EstadoInquilino
+#     id_persona: str
+#     id_espacio_comercial: str
+
+
+# class EspacioComun(rx.Model, table=True):
+#     id_espacio_comun: str
+#     estado: EstadoEspacioComun
+#     area: float
+#     precio_por_dia: float
+#     motivo_de_uso: str
+#     id_zona: str
+
+
+# class Factura(rx.Model, table=True):
+#     id_factura: str
+#     estado_factura: EstadoFactura
+#     fecha_emision: date
+#     monto_total: float
+#     fecha_vencimiento: date
+#     id_inquilino: str
+
+
+# class Recordatorio(rx.Model, table=True):
+#     id_recordatorio: str
+#     tipo_recordatorio: TipoRecordatorio
+#     fecha_envio: date
+#     contenido: str
+#     id_factura: str
+
+
+# class Pago(rx.Model, table=True):
+#     id_pago: str
+#     fecha_pago: date
+#     metodo_pago: MetodoPago
+#     monto_pago: float
+#     tipo_moneda: str
+#     id_factura: str
+
+
+# class Evento(rx.Model, table=True):
+#     id: str
+#     nombre_evento: str
+#     descripcion: str
+#     categoria: str
+#     objetivo: str
+#     fecha_inicio: date
+#     fecha_fin: date
+#     id_espacio_comun: str
+#     id_inquilino: str
+
+
+# class RegistroIncidencia(rx.Model, table=True):
+#     cod_incidencia: int
+#     descripcion: str
+#     fecha_hora_registro: datetime
+#     estado: EstadoIncidencia
+#     id_instalacion: str
+#     id_empleado: str
+
+
+# class ProgramMantenimiento(rx.Model, table=True):
+#     dod_mantenimiento: int
+#     plazo: date
+#     descripcion: str
+#     estado: EstadoMantenimiento
+#     id_instalacion: str
+#     id_encargado: str
+#     prioridad: str
+#     cod_incidencia: Optional[int]
+
+
+# class AcuerdoRecobro(rx.Model, table=True):
+#     id_acuerdo: str
+#     fecha_acuerdo: date
+#     descripcion_acuerdo: str
+#     precio_acuerdo: int
+#     id_proyecto: str
+#     id_factura: str
+
+
+# class ContratoAlquiler(rx.Model, table=True):
+#     id_contrato: str
+#     fecha_inicio: date
+#     monto: float
+#     condicion: str
+#     fecha_vencimiento: date
+#     estado: EstadoContratoAlquiler
+#     porcentaje: float
+#     id_documento: str
+#     id_factura: str
+#     id_espacio_comercial: str
+
+
+# class RegistroMantenimiento(rx.Model, table=True):
+#     cod_r_mantenimiento: int
+#     observaciones: Optional[str]
+#     fecha_realizada: date
+#     hora_inicio: datetime
+#     hora_fin: datetime
+#     id_instalacion: str
+#     dod_mantenimiento: int
+#     id_empleado: str
