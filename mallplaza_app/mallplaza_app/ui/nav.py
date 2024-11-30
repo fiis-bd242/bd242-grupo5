@@ -5,7 +5,7 @@ import reflex_local_auth
 
 def navbar_link(text: str, url: str) -> rx.Component:
     return rx.link(
-        rx.text(text, size="4", weight="medium"), href=url
+        rx.text(text, size="4", weight="medium", color="white"), href=url
     ) # <a href=
 
 
@@ -45,6 +45,7 @@ def navbar() -> rx.Component:
                             "Sign Up",
                             size="3",
                             variant="outline",
+                            color="white",
                         ),
                         href=reflex_local_auth.routes.REGISTER_ROUTE
                     ),
@@ -53,6 +54,7 @@ def navbar() -> rx.Component:
                             "Log in",
                             size="3",
                             variant="outline",
+                            color="white",
                         ),
                         href=reflex_local_auth.routes.LOGIN_ROUTE
                     ),

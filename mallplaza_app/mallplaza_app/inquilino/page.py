@@ -49,7 +49,7 @@ class InquilinoState(rx.State):
     async def create_inquilino(self, data: dict):
         async with self:
             try:
-                self.inquilino=create_inquilino_service(id_inquilino=data['id_inquilino'], razon_social=data['razon_social'], fecha_registro=data['fecha_registro'],estado_inquilino=data['estado_inquilino'], id_persona=data['id_persona'], id_espacio_comercial=['id_espacio_comercial'])
+                self.inquilino=create_inquilino_service(id_inquilino=data['id_inquilino'], razon_social=data['razon_social'], fecha_registro=data['fecha_registro'],estado_inquilino=data['estado_inquilino'], id_persona=data['id_persona'], id_espacio_comercial=data['id_espacio_comercial'])
             except BaseException as be:
                 print(be.args)
                 self.error = be.args
@@ -65,22 +65,24 @@ class InquilinoState(rx.State):
 
 #Main
 def inquilino_page() -> rx.Component:
-    return rx.flex(
-        rx.heading("Inquilino", align="center"),
-        rx.hstack(
-            buscar_inquilino_component(),
-            create_inquilino_dialog_component(),
-            justify='center',
-            style={'margin-top': '30px'}
-        ),
-        table_inquilino(InquilinoState.inquilino),
-        rx.cond(
-            InquilinoState.error != '',
-            notify_component(InquilinoState.error, 'shield-alert','yellow')
-        ),
-        direction='column',
-        style={"width": "60vw", "margin":"auto"}
-    )
+    my_child = rx.flex(
+            rx.heading("Inquilino", align="center"),
+            rx.hstack(
+                buscar_inquilino_component(),
+                create_inquilino_dialog_component(),
+                justify='center',
+                style={'margin-top': '30px'}
+            ),
+            table_inquilino(InquilinoState.inquilino),
+            rx.cond(
+                InquilinoState.error != '',
+                notify_component(InquilinoState.error, 'shield-alert','yellow')
+            ),
+            direction='column',
+            style={"width": "60vw", "margin":"auto"}
+        )
+    
+    return base_page(my_child)
 
 def table_inquilino(list_inquilino: list[Inquilino]):
     return rx.table.root(

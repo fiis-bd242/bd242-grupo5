@@ -4,7 +4,7 @@ from .model import Inquilino
 
 def select_all_inquilino_service():
     inquilino = select_all()
-    print(inquilino)
+    #print(inquilino)
     return inquilino
 
 def select_inquilino_by_name_service(name: str):
