@@ -48,7 +48,7 @@ CREATE TYPE estado_recobro AS ENUM ('Enviado', 'Valorizando', 'Pendiente', 'Ejec
 CREATE TYPE estado_proyecto AS ENUM ('Ejecutado', 'Supervision');
 CREATE TYPE estado_solicitud AS ENUM ('Abierto', 'Cerrado');
 CREATE TYPE estado_inquilino AS ENUM ('Activo', 'Inactivo');
-CREATE TYPE estado_espacio_comun AS ENUM ('Ocupado', 'Disponible', 'En mantenimiento');
+CREATE TYPE estado_espacio_comun AS ENUM ('ocupado', 'disponible', 'mantenimiento');
 CREATE TYPE estado_factura AS ENUM ('Pendiente', 'Pagado');
 CREATE TYPE tipo_recordatorio AS ENUM ('Previo', 'Posterior');
 CREATE TYPE estado_mantenimiento AS ENUM ('Pendiente', 'Hecho');
