@@ -1,6 +1,5 @@
 import reflex as rx
 #from .model.espacio_comercial_model import Espacio_comercial
-#from .model.contrato_alquiler_model import Contrato_alquiler
 #from .Service.espacio_comercial_service import select_all_espacio_comercial_service, select_ec_by_tipo_inmueble_service, order_ec_by_tarifa_service, order_ec_by_area_service, select_ec_figma_service
 from ..ui.base import base_page
 
