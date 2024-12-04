@@ -254,8 +254,9 @@ CREATE TABLE Pago
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE Evento
 (
-  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY, 
-  nombre_evento CHAR(50) UNIQUE NOT NULL,
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  codigo_evento CHAR(20) UNIQUE NOT NULL,
+  nombre_evento CHAR(50) NOT NULL,
   descripcion VARCHAR(100) NOT NULL,
   categoria VARCHAR(100) NOT NULL,
   objetivo VARCHAR(50) NOT NULL,

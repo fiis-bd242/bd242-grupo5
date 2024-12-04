@@ -316,18 +316,18 @@ VALUES
 ('P010', '2023-10-30', 'Automatico', 550.00, 'S/.', 'F010');
 
 -- Poblamiento de datos para Evento
-INSERT INTO Evento (id_espacio_comun, id_inquilino, nombre_evento, descripcion, fecha_inicio, fecha_fin)
+INSERT INTO Evento (codigo_evento, id_espacio_comun, id_inquilino, nombre_evento, descripcion, fecha_inicio, fecha_fin)
 VALUES
-('EC001', 'I001', 'Evento1', 'Conferencia sobre tecnología', '2023-01-10', '2023-01-10'),
-('EC002', 'I002', 'Evento2', 'Taller de marketing', '2023-02-15', '2023-02-15'),
-('EC003', 'I003', 'Evento3', 'Reunión de proyecto', '2023-03-20', '2023-03-20'),
-('EC004', 'I004', 'Evento4', 'Seminario de ventas', '2023-04-25', '2023-04-25'),
-('EC005', 'I005', 'Evento5', 'Capacitación de personal', '2023-05-30', '2023-05-30'),
-('EC006', 'I006', 'Evento6', 'Presentación de resultados', '2023-06-05', '2023-06-05'),
-('EC007', 'I007', 'Evento7', 'Taller de innovación', '2023-07-10', '2023-07-10'),
-('EC008', 'I008', 'Evento8', 'Feria de negocios', '2023-08-15', '2023-08-15'),
-('EC009', 'I009', 'Evento9', 'Exposición de productos', '2023-09-20', '2023-09-20'),
-('EC010', 'I010', 'Evento10', 'Cierre de proyecto', '2023-10-25', '2023-10-25');
+('202400013', 'EC001', 'I001', 'Evento1', 'Conferencia sobre tecnología', '2023-01-10', '2023-01-10'),
+('202400014', 'EC002', 'I002', 'Evento2', 'Taller de marketing', '2023-02-15', '2023-02-15'),
+('202400015', 'EC003', 'I003', 'Evento3', 'Reunión de proyecto', '2023-03-20', '2023-03-20'),
+('202400016', 'EC004', 'I004', 'Evento4', 'Seminario de ventas', '2023-04-25', '2023-04-25'),
+('202400017', 'EC005', 'I005', 'Evento5', 'Capacitación de personal', '2023-05-30', '2023-05-30'),
+('202400018', 'EC006', 'I006', 'Evento6', 'Presentación de resultados', '2023-06-05', '2023-06-05'),
+('202400019', 'EC007', 'I007', 'Evento7', 'Taller de innovación', '2023-07-10', '2023-07-10'),
+('202400020', 'EC008', 'I008', 'Evento8', 'Feria de negocios', '2023-08-15', '2023-08-15'),
+('202400021', 'EC009', 'I009', 'Evento9', 'Exposición de productos', '2023-09-20', '2023-09-20'),
+('202400022', 'EC010', 'I010', 'Evento10', 'Cierre de proyecto', '2023-10-25', '2023-10-25');
 
 -- Poblamiento de datos para Program_Mantenimiento
 INSERT INTO Program_Mantenimiento (dod_mantenimiento, plazo, descripcion, estado, nombre_instalacion, id_administrador, prioridad)
