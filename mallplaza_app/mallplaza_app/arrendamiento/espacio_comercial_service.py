@@ -1,5 +1,5 @@
 '''
-from ..repository.espacio_comercial_repository import select_all, select_ec_by_tipo_inmueble, order_ec_by_tarifa, order_ec_by_area, select_ec_figma
+from .espacio_comercial_repository import select_all, select_ec_by_tipo_inmueble, order_ec_by_tarifa, order_ec_by_area, select_ec_figma
 
 
 def select_all_espacio_comercial_service():
