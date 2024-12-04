@@ -1,5 +1,5 @@
 '''
-from ..model.espacio_comercial_model import Espacio_comercial
+from .espacio_comercial_model import Espacio_comercial
 from .connect_db import connect
 from sqlmodel import Session, select, desc
 
