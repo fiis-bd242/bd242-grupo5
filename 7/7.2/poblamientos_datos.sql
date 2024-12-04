@@ -262,16 +262,16 @@ VALUES
 -- Poblamiento de datos para Espacio_comun
 INSERT INTO Espacio_comun (id_espacio_comun, estado, area, precio_por_dia, motivo_de_uso, nombre_zona)
 VALUES
-('EC001', 'Disponible', 30.00, 15.00, 'Eventos', 'Zona1'),
-('EC002', 'Ocupado', 40.00, 20.00, 'Reuniones', 'Zona2'),
-('EC003', 'Disponible', 50.00, 25.00, 'Capacitaciones', 'Zona3'),
-('EC004', 'Ocupado', 60.00, 30.00, 'Seminarios', 'Zona4'),
-('EC005', 'Disponible', 70.00, 35.00, 'Conferencias', 'Zona5'),
-('EC006', 'Ocupado', 80.00, 40.00, 'Talleres', 'Zona6'),
-('EC007', 'Disponible', 90.00, 45.00, 'Eventos', 'Zona7'),
-('EC008', 'Ocupado', 100.00, 50.00, 'Reuniones', 'Zona8'),
-('EC009', 'Disponible', 110.00, 55.00, 'Capacitaciones', 'Zona9'),
-('EC010', 'Ocupado', 120.00, 60.00, 'Seminarios', 'Zona10');
+('EC001', 'disponible', 30.00, 15.00, 'Eventos', 'Zona1'),
+('EC002', 'ocupado', 40.00, 20.00, 'Reuniones', 'Zona2'),
+('EC003', 'disponible', 50.00, 25.00, 'Capacitaciones', 'Zona3'),
+('EC004', 'ocupado', 60.00, 30.00, 'Seminarios', 'Zona4'),
+('EC005', 'disponible', 70.00, 35.00, 'Conferencias', 'Zona5'),
+('EC006', 'ocupado', 80.00, 40.00, 'Talleres', 'Zona6'),
+('EC007', 'disponible', 90.00, 45.00, 'Eventos', 'Zona7'),
+('EC008', 'ocupado', 100.00, 50.00, 'Reuniones', 'Zona8'),
+('EC009', 'disponible', 110.00, 55.00, 'Capacitaciones', 'Zona9'),
+('EC010', 'ocupado', 120.00, 60.00, 'Seminarios', 'Zona10');
 
 -- Poblamiento de datos para Factura
 INSERT INTO Factura (id_factura, estado_factura, fecha_emision, monto_total, fecha_vencimiento, id_inquilino)
