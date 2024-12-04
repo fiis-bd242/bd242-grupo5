@@ -145,6 +145,6 @@ app.add_page(
 )
 #Módulo Mantenimiento
 app.add_page(
-    mantenimiento.about_mantenimiento,
+    mantenimiento.incidencia_page,
     route=navigation.routes.MANTENIMIENTO_ROUTE
 )

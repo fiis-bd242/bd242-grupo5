@@ -1,5 +1,5 @@
-from .page import about_mantenimiento
+from .page import incidencia_page
 
 __all__ = {
-    'about_mantenimiento',
+    'incidencia_page',
 }
